@@ -1,4 +1,7 @@
+alert("SCRIPT FUNCIONANDO");
+
 ```javascript
+
 // ==========================================
 // 🧠 DESAFÍO MENTAL - SCRIPT.JS
 // ==========================================
