@@ -1,5 +1,6 @@
+```javascript
 // ==========================================
-// DESAFÍO MENTAL - SCRIPT.JS
+// 🧠 DESAFÍO MENTAL - SCRIPT.JS
 // ==========================================
 
 // ==========================================
@@ -45,7 +46,6 @@ if (Number.isNaN(dmPistas)) {
 
 
 // 🎁 REGALO DE BIENVENIDA: 3 PISTAS
-// Solo se entrega una vez por navegador.
 
 if (
     localStorage.getItem("desafioWelcome3") !== "true"
@@ -62,7 +62,6 @@ if (
         "desafioPistas",
         dmPistas
     );
-
 }
 
 
@@ -77,7 +76,6 @@ if (Number.isNaN(dmMonedas)) {
         "desafioMonedas",
         dmMonedas
     );
-
 }
 
 
@@ -95,7 +93,6 @@ if (
         "desafioUltimaPista",
         dmUltimaPista
     );
-
 }
 
 
@@ -104,7 +101,7 @@ const DM_TIEMPO_PISTA =
 
 
 // ==========================================
-// MULTIJUGADOR
+// 👥 MULTIJUGADOR
 // ==========================================
 
 let roomCode = "";
@@ -114,7 +111,7 @@ let roomRef = null;
 
 
 // ==========================================
-// CONFIGURACIÓN
+// ⚙️ DIFICULTADES
 // ==========================================
 
 const difficultySettings = {
@@ -143,7 +140,7 @@ const difficultySettings = {
 
 
 // ==========================================
-// ELEMENTOS
+// 🎵 MÚSICA
 // ==========================================
 
 const music =
@@ -151,7 +148,7 @@ const music =
 
 
 // ==========================================
-// PANTALLAS
+// 📱 PANTALLAS
 // ==========================================
 
 function showScreen(id) {
@@ -180,7 +177,7 @@ function showScreen(id) {
 
 
 // ==========================================
-// INICIO
+// 🏠 INICIO
 // ==========================================
 
 function openPlayerScreen() {
@@ -195,7 +192,9 @@ function openPlayerScreen() {
     if (input) {
 
         setTimeout(() => {
+
             input.focus();
+
         }, 200);
 
     }
@@ -209,7 +208,11 @@ function continueToCategories() {
         document.getElementById("playerName");
 
 
-    if (!input) return;
+    if (!input) {
+
+        return;
+
+    }
 
 
     playerName =
@@ -229,7 +232,7 @@ function continueToCategories() {
 
 
 // ==========================================
-// VOLVER A INICIO
+// 🏠 VOLVER AL INICIO
 // ==========================================
 
 function goHome() {
@@ -246,13 +249,17 @@ function goHome() {
     }
 
 
+    roomCode = "";
+    isHost = false;
+
+
     showScreen("homeScreen");
 
 }
 
 
 // ==========================================
-// CATEGORÍAS
+// 🌎 CATEGORÍAS
 // ==========================================
 
 function selectCategory(category) {
@@ -294,7 +301,7 @@ function openCategoryScreen() {
 
 
 // ==========================================
-// CANTIDAD
+// 🔢 CANTIDAD
 // ==========================================
 
 function selectAmount(amount) {
@@ -316,13 +323,15 @@ function openAmountScreen() {
 
 
 // ==========================================
-// DIFICULTAD
+// 🎯 DIFICULTAD
 // ==========================================
 
 function selectDifficulty(difficulty) {
 
     if (!difficultySettings[difficulty]) {
+
         return;
+
     }
 
 
@@ -330,15 +339,13 @@ function selectDifficulty(difficulty) {
         difficulty;
 
 
-    showScreen("gameScreen");
-
     startGame(selectedAmount);
 
 }
 
 
 // ==========================================
-// INICIAR PARTIDA
+// 🎮 INICIAR PARTIDA
 // ==========================================
 
 function startGame(amount) {
@@ -403,7 +410,7 @@ function startGame(amount) {
 
 
 // ==========================================
-// PREPARAR PREGUNTAS
+// 🧠 PREPARAR PREGUNTAS
 // ==========================================
 
 function prepareQuestions(
@@ -573,7 +580,7 @@ function prepareQuestions(
 
 
 // ==========================================
-// MEZCLAR
+// 🔀 MEZCLAR
 // ==========================================
 
 function shuffleArray(array) {
@@ -608,7 +615,7 @@ function shuffleArray(array) {
 
 
 // ==========================================
-// MOSTRAR PREGUNTA
+// ❓ MOSTRAR PREGUNTA
 // ==========================================
 
 function showQuestion() {
@@ -730,7 +737,8 @@ function showQuestion() {
             button.classList.remove(
                 "correct",
                 "wrong",
-                "disabled"
+                "disabled",
+                "hint-correct"
             );
 
         }
@@ -750,7 +758,7 @@ function showQuestion() {
 
 
 // ==========================================
-// NOMBRE CATEGORÍA
+// 🏷️ NOMBRE DE CATEGORÍA
 // ==========================================
 
 function getCategoryName(category) {
@@ -778,7 +786,7 @@ function getCategoryName(category) {
 
 
 // ==========================================
-// TEMPORIZADOR DEL JUEGO
+// ⏱️ TEMPORIZADOR
 // ==========================================
 
 function startTimer() {
@@ -822,7 +830,7 @@ function startTimer() {
 
 
 // ==========================================
-// ACTUALIZAR TEMPORIZADOR
+// ⏱️ ACTUALIZAR TIEMPO
 // ==========================================
 
 function updateTimer() {
@@ -844,7 +852,7 @@ function updateTimer() {
 
 
 // ==========================================
-// TIEMPO AGOTADO
+// ⌛ TIEMPO AGOTADO
 // ==========================================
 
 function timeOut() {
@@ -918,7 +926,7 @@ function timeOut() {
 
 
 // ==========================================
-// RESPONDER
+// ✅ RESPONDER
 // ==========================================
 
 function selectAnswer(index) {
@@ -1064,7 +1072,7 @@ function selectAnswer(index) {
 
 
 // ==========================================
-// PUNTUACIÓN
+// ⭐ PUNTUACIÓN
 // ==========================================
 
 function updateScore() {
@@ -1086,7 +1094,7 @@ function updateScore() {
 
 
 // ==========================================
-// RACHA
+// 🔥 RACHA
 // ==========================================
 
 function updateStreak() {
@@ -1108,7 +1116,7 @@ function updateStreak() {
 
 
 // ==========================================
-// FINAL
+// 🏆 FINAL
 // ==========================================
 
 function finishGame() {
@@ -1191,17 +1199,26 @@ function finishGame() {
 
 
     if (finalScore) {
-        finalScore.textContent = score;
+
+        finalScore.textContent =
+            score;
+
     }
 
 
     if (correct) {
-        correct.textContent = correctAnswers;
+
+        correct.textContent =
+            correctAnswers;
+
     }
 
 
     if (wrong) {
-        wrong.textContent = wrongAnswers;
+
+        wrong.textContent =
+            wrongAnswers;
+
     }
 
 
@@ -1221,24 +1238,28 @@ function finishGame() {
                 "🏆 ¡NUEVO RÉCORD PERSONAL! 🔥";
 
         }
+
         else if (accuracy >= 90) {
 
             message.textContent =
                 "🔥 ¡Excelente! Eres una máquina.";
 
         }
+
         else if (accuracy >= 70) {
 
             message.textContent =
                 "👏 ¡Muy buen trabajo!";
 
         }
+
         else if (accuracy >= 50) {
 
             message.textContent =
                 "💪 ¡Vas por buen camino!";
 
         }
+
         else {
 
             message.textContent =
@@ -1276,25 +1297,11 @@ function finishGame() {
 
     }
 
-
-    const progress =
-        document.getElementById(
-            "progressFill"
-        );
-
-
-    if (progress) {
-
-        progress.style.width =
-            "100%";
-
-    }
-
 }
 
 
 // ==========================================
-// JUGAR OTRA VEZ
+// 🔄 REINICIAR
 // ==========================================
 
 function restartGame() {
@@ -1360,7 +1367,7 @@ function restartGame() {
 
 
 // ==========================================
-// MENÚ
+// ⚙️ MENÚ DEL JUEGO
 // ==========================================
 
 function openGameMenu() {
@@ -1402,7 +1409,7 @@ function closeGameMenu() {
 
 
 // ==========================================
-// SALIR
+// 🚪 SALIR DEL JUEGO
 // ==========================================
 
 function exitGame() {
@@ -1422,7 +1429,7 @@ function exitGame() {
 
 
 // ==========================================
-// CÓMO JUGAR
+// 📖 CÓMO JUGAR
 // ==========================================
 
 function openHowToPlay() {
@@ -1464,7 +1471,7 @@ function closeHowToPlay() {
 
 
 // ==========================================
-// MÚSICA
+// 🎵 MÚSICA
 // ==========================================
 
 function startMusic() {
@@ -1499,7 +1506,9 @@ function startMusic() {
 function stopMusic() {
 
     if (!music) {
+
         return;
+
     }
 
 
@@ -1531,6 +1540,7 @@ function toggleMusic() {
         startMusic();
 
     }
+
     else {
 
         stopMusic();
@@ -1541,7 +1551,7 @@ function toggleMusic() {
 
 
 // ==========================================
-// VIBRACIÓN
+// 📳 VIBRACIÓN
 // ==========================================
 
 function vibrate(pattern) {
@@ -1585,7 +1595,7 @@ function toggleVibration() {
 
 
 // ==========================================
-// CONFIGURACIÓN
+// ⚙️ CONFIGURACIÓN
 // ==========================================
 
 function loadSettings() {
@@ -1664,7 +1674,7 @@ function updateSettings() {
 
 
 // ==========================================
-// 💡 SISTEMA DE PISTAS
+// 💡 GUARDAR PISTAS
 // ==========================================
 
 function guardarDatosPistas() {
@@ -1690,7 +1700,7 @@ function guardarDatosPistas() {
 
 
 // ==========================================
-// REVISAR PISTA GRATIS
+// 🎁 PISTA GRATIS
 // ==========================================
 
 function revisarPistaGratis() {
@@ -1737,7 +1747,7 @@ function revisarPistaGratis() {
 
 
 // ==========================================
-// ACTUALIZAR PANEL DE PISTAS
+// 💡 ACTUALIZAR PANEL
 // ==========================================
 
 function actualizarPanelPistas() {
@@ -1828,7 +1838,7 @@ function actualizarPanelPistas() {
 
 
 // ==========================================
-// 💡 ABRIR MIS PISTAS
+// 💡 MIS PISTAS
 // ==========================================
 
 function abrirPistas() {
@@ -1853,10 +1863,6 @@ function abrirPistas() {
 }
 
 
-// ==========================================
-// CERRAR MIS PISTAS
-// ==========================================
-
 function cerrarPistas() {
 
     const panel =
@@ -1877,12 +1883,11 @@ function cerrarPistas() {
 
 
 // ==========================================
-// 🛒 ABRIR TIENDA
+// 🛒 TIENDA
 // ==========================================
 
 function abrirTiendaPistas() {
 
-    // Cerramos el panel de pistas si estaba abierto.
     cerrarPistas();
 
 
@@ -1906,10 +1911,6 @@ function abrirTiendaPistas() {
 }
 
 
-// ==========================================
-// 🛒 CERRAR TIENDA
-// ==========================================
-
 function cerrarTiendaPistas() {
 
     const tienda =
@@ -1930,7 +1931,7 @@ function cerrarTiendaPistas() {
 
 
 // ==========================================
-// 🪙 COMPRAR 1 PISTA CON MONEDAS
+// 🪙 COMPRAR PISTA
 // ==========================================
 
 function comprarPista() {
@@ -1969,7 +1970,7 @@ function comprarPista() {
 
 
 // ==========================================
-// 🪙 COMPRAR 5 PISTAS CON MONEDAS
+// 🪙 COMPRAR 5 PISTAS
 // ==========================================
 
 function comprarCincoPistas() {
@@ -2008,16 +2009,7 @@ function comprarCincoPistas() {
 
 
 // ==========================================
-// 💳 COMPRAS CON DINERO REAL
-// ==========================================
-//
-// IMPORTANTE:
-// Estas funciones NO entregan pistas todavía.
-//
-// El pago real debe ser confirmado por un
-// servidor/proveedor de pagos antes de dar
-// las pistas.
-//
+// 💳 COMPRA REAL
 // ==========================================
 
 function iniciarCompraPista(cantidad, precio) {
@@ -2045,7 +2037,7 @@ function iniciarCompraPista(cantidad, precio) {
 
 
 // ==========================================
-// ACTUALIZAR PISTAS DURANTE EL JUEGO
+// 💡 PISTAS DURANTE EL JUEGO
 // ==========================================
 
 function actualizarPistasEnJuego() {
@@ -2084,7 +2076,7 @@ function actualizarPistasEnJuego() {
 
 
 // ==========================================
-// OCULTAR PISTA
+// 👁️ OCULTAR PISTA
 // ==========================================
 
 function ocultarPistaActual() {
@@ -2111,86 +2103,12 @@ function ocultarPistaActual() {
 
 
 // ==========================================
-// 💡 USAR PISTA - REVELA LA RESPUESTA
+// 💡 USAR PISTA
 // ==========================================
 
 function usarPista() {
 
     revisarPistaGratis();
-
-    if (dmPistas <= 0) {
-
-        alert(
-            "❌ No tienes pistas. Puedes conseguir una gratis cada 50 minutos o conseguir más desde la tienda."
-        );
-
-        return;
-    }
-
-    if (
-        currentQuestion >= gameQuestions.length
-    ) {
-        return;
-    }
-
-    const question =
-        gameQuestions[currentQuestion];
-
-    // Gastar una pista
-    dmPistas--;
-
-    guardarDatosPistas();
-
-    // Obtener la respuesta correcta
-    const respuestaCorrecta =
-        question.answers[question.correct];
-
-    // Mostrar la respuesta en el panel de pista
-    const pista =
-        document.getElementById("pistaActual");
-
-    if (pista) {
-
-        pista.innerHTML =
-            "💡 <strong>RESPUESTA CORRECTA:</strong><br>" +
-            "<span>" +
-            respuestaCorrecta +
-            "</span>";
-
-        pista.classList.remove("hidden");
-    }
-
-    // Marcar visualmente la respuesta correcta
-    const buttons =
-        document.querySelectorAll(".answer");
-
-    buttons.forEach(button => {
-
-        button.classList.remove(
-            "hint-correct"
-        );
-
-    });
-
-    if (buttons[question.correct]) {
-
-        buttons[question.correct]
-            .classList.add(
-                "hint-correct"
-            );
-
-    }
-
-    actualizarPistasEnJuego();
-
-    vibrate([50]);
-
-    console.log(
-        "💡 Pista utilizada. Respuesta correcta:",
-        respuestaCorrecta
-    );
-
-}
 
 
     if (
@@ -2226,6 +2144,12 @@ function usarPista() {
     guardarDatosPistas();
 
 
+    const respuestaCorrecta =
+        question.answers[
+            question.correct
+        ];
+
+
     const pista =
         document.getElementById(
             "pistaActual"
@@ -2234,12 +2158,11 @@ function usarPista() {
 
     if (pista) {
 
-        pista.textContent =
-            "💡 PISTA: " +
-            (
-                question.hint ||
-                "Analiza las opciones y descarta las que no tengan sentido."
-            );
+        pista.innerHTML =
+            "💡 <strong>RESPUESTA CORRECTA:</strong><br>" +
+            "<span>" +
+            respuestaCorrecta +
+            "</span>";
 
 
         pista.classList.remove(
@@ -2249,23 +2172,49 @@ function usarPista() {
     }
 
 
+    const buttons =
+        document.querySelectorAll(
+            ".answer"
+        );
+
+
+    buttons.forEach(button => {
+
+        button.classList.remove(
+            "hint-correct"
+        );
+
+    });
+
+
+    if (
+        buttons[question.correct]
+    ) {
+
+        buttons[question.correct]
+            .classList.add(
+                "hint-correct"
+            );
+
+    }
+
+
     actualizarPistasEnJuego();
 
 
-    vibrate([
-        50
-    ]);
+    vibrate([50]);
 
 
     console.log(
-        "💡 Pista utilizada."
+        "💡 Pista utilizada. Respuesta correcta:",
+        respuestaCorrecta
     );
 
 }
 
 
 // ==========================================
-// MULTIJUGADOR
+// 👥 MULTIJUGADOR
 // ==========================================
 
 function openMultiplayerScreen() {
@@ -2310,7 +2259,7 @@ function showJoinRoom() {
 
 
 // ==========================================
-// CREAR SALA
+// 🏠 CREAR SALA
 // ==========================================
 
 function createRoom() {
@@ -2331,7 +2280,7 @@ function createRoom() {
 
     const createButton =
         document.querySelector(
-            '#multiplayerScreen .main-button'
+            "#multiplayerScreen .main-button"
         );
 
 
@@ -2463,7 +2412,7 @@ function createRoom() {
 
 
 // ==========================================
-// UNIRSE
+// 🔑 UNIRSE A SALA
 // ==========================================
 
 function joinRoom() {
@@ -2516,7 +2465,7 @@ function joinRoom() {
 
     const joinButton =
         document.querySelector(
-            '#joinRoomBox .main-button'
+            "#joinRoomBox .main-button"
         );
 
 
@@ -2639,6 +2588,7 @@ function joinRoom() {
                 );
 
             }
+
             else if (
                 error.message ===
                 "FULL"
@@ -2649,6 +2599,7 @@ function joinRoom() {
                 );
 
             }
+
             else {
 
                 alert(
@@ -2675,13 +2626,15 @@ function joinRoom() {
 
 
 // ==========================================
-// ESCUCHAR SALA
+// 👂 ESCUCHAR SALA
 // ==========================================
 
 function listenToRoom() {
 
     if (!roomCode) {
+
         return;
+
     }
 
 
@@ -2782,6 +2735,7 @@ function listenToRoom() {
                             "🟢 ¡Jugador 2 conectado!";
 
                     }
+
                     else {
 
                         waitingText.textContent =
@@ -2817,6 +2771,7 @@ function listenToRoom() {
                     }
 
                 }
+
                 else {
 
                     if (startButton) {
@@ -2830,6 +2785,7 @@ function listenToRoom() {
                 }
 
             }
+
             else {
 
                 if (guestNameElement) {
@@ -2924,6 +2880,7 @@ function listenToRoom() {
             });
 
     }
+
     else {
 
         roomRef
@@ -2939,7 +2896,7 @@ function listenToRoom() {
 
 
 // ==========================================
-// INICIAR MULTIJUGADOR
+// 🎮 INICIAR MULTIJUGADOR
 // ==========================================
 
 function startMultiplayerGame() {
@@ -2955,7 +2912,10 @@ function startMultiplayerGame() {
     }
 
 
-    if (!roomCode || !roomRef) {
+    if (
+        !roomCode ||
+        !roomRef
+    ) {
 
         alert(
             "No hay una sala activa."
@@ -3047,7 +3007,7 @@ function startMultiplayerGame() {
 
 
 // ==========================================
-// JUEGO MULTIJUGADOR LOCAL
+// 🎮 MULTIJUGADOR LOCAL
 // ==========================================
 
 function startMultiplayerLocally() {
@@ -3118,7 +3078,7 @@ function startMultiplayerLocally() {
 
 
 // ==========================================
-// DETENER ESCUCHADOR
+// 🛑 DETENER ESCUCHADOR
 // ==========================================
 
 function stopRoomListener() {
@@ -3142,7 +3102,7 @@ function stopRoomListener() {
 
 
 // ==========================================
-// LIMPIAR CONEXIÓN
+// 🧹 LIMPIAR CONEXIÓN
 // ==========================================
 
 function cleanupRoomConnection(
@@ -3150,7 +3110,9 @@ function cleanupRoomConnection(
 ) {
 
     if (!roomRef) {
+
         return;
+
     }
 
 
@@ -3171,6 +3133,7 @@ function cleanupRoomConnection(
             });
 
     }
+
     else {
 
         if (isHost) {
@@ -3183,6 +3146,7 @@ function cleanupRoomConnection(
                 .catch(() => {});
 
         }
+
         else {
 
             roomRef
@@ -3201,7 +3165,7 @@ function cleanupRoomConnection(
 
 
 // ==========================================
-// GENERAR CÓDIGO
+// 🔢 GENERAR CÓDIGO
 // ==========================================
 
 function generateRoomCode() {
@@ -3236,7 +3200,7 @@ function generateRoomCode() {
 
 
 // ==========================================
-// REINICIAR SALA
+// 🔄 REINICIAR SALA
 // ==========================================
 
 function resetRoomUI() {
@@ -3293,13 +3257,15 @@ function resetRoomUI() {
 
 
 // ==========================================
-// COPIAR CÓDIGO
+// 📋 COPIAR CÓDIGO
 // ==========================================
 
 function copyRoomCode() {
 
     if (!roomCode) {
+
         return;
+
     }
 
 
@@ -3326,6 +3292,7 @@ function copyRoomCode() {
             });
 
     }
+
     else {
 
         alert(
@@ -3339,7 +3306,7 @@ function copyRoomCode() {
 
 
 // ==========================================
-// SALIR DE SALA
+// 🚪 SALIR DE SALA
 // ==========================================
 
 function leaveRoom() {
@@ -3351,6 +3318,7 @@ function leaveRoom() {
             cleanupRoomConnection(true);
 
         }
+
         else {
 
             cleanupRoomConnection(false);
@@ -3380,7 +3348,7 @@ function leaveRoom() {
 
 
 // ==========================================
-// TECLADO A B C D
+// ⌨️ TECLADO A B C D
 // ==========================================
 
 document.addEventListener(
@@ -3430,7 +3398,7 @@ document.addEventListener(
 
 
 // ==========================================
-// INICIAR
+// 🚀 INICIAR APLICACIÓN
 // ==========================================
 
 document.addEventListener(
@@ -3481,10 +3449,11 @@ document.addEventListener(
 
 
 // ==========================================
-// ACTUALIZAR CONTADOR DE PISTAS
+// ⏰ ACTUALIZAR PISTAS
 // ==========================================
 
 setInterval(
     actualizarPanelPistas,
     1000
 );
+```
