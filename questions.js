@@ -2364,5 +2364,3 @@ window.questionBank = [
     }
 
 ];
-
-window.questionBank = questions;
