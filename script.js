@@ -32,6 +32,43 @@ let musicEnabled = true;
 let vibrationEnabled = true;
 
 // ==========================================
+// 💡 SISTEMA DE PISTAS
+// ==========================================
+
+let dmPistas =
+    Number(localStorage.getItem("desafioPistas"));
+
+if (Number.isNaN(dmPistas)) {
+    dmPistas = 0;
+}
+
+let dmMonedas =
+    Number(localStorage.getItem("desafioMonedas"));
+
+if (Number.isNaN(dmMonedas)) {
+    dmMonedas = 500;
+}
+
+let dmUltimaPista =
+    Number(localStorage.getItem("desafioUltimaPista"));
+
+if (
+    Number.isNaN(dmUltimaPista) ||
+    dmUltimaPista <= 0
+) {
+    dmUltimaPista = Date.now();
+
+    localStorage.setItem(
+        "desafioUltimaPista",
+        dmUltimaPista
+    );
+}
+
+const DM_TIEMPO_PISTA =
+    50 * 60 * 1000;
+
+
+// ==========================================
 // MULTIJUGADOR
 // ==========================================
 
@@ -42,7 +79,7 @@ let roomRef = null;
 
 
 // ==========================================
-// CONFIGURACIÓN DE DIFICULTADES
+// CONFIGURACIÓN
 // ==========================================
 
 const difficultySettings = {
@@ -84,12 +121,13 @@ const music =
 
 function showScreen(id) {
 
-    document.querySelectorAll(".screen").forEach(screen => {
+    document.querySelectorAll(".screen")
+        .forEach(screen => {
 
-        screen.classList.remove("active");
-        screen.classList.add("hidden");
+            screen.classList.remove("active");
+            screen.classList.add("hidden");
 
-    });
+        });
 
     const screen =
         document.getElementById(id);
@@ -158,7 +196,9 @@ function goHome() {
     stopMusic();
 
     if (roomCode) {
+
         cleanupRoomConnection(false);
+
     }
 
     showScreen("homeScreen");
@@ -232,9 +272,7 @@ function openAmountScreen() {
 function selectDifficulty(difficulty) {
 
     if (!difficultySettings[difficulty]) {
-
         return;
-
     }
 
     selectedDifficulty =
@@ -308,7 +346,9 @@ function startGame(amount) {
 // PREPARAR PREGUNTAS
 // ==========================================
 
-function prepareQuestions(previousFirstQuestion = null) {
+function prepareQuestions(
+    previousFirstQuestion = null
+) {
 
     if (
         !window.questionBank ||
@@ -329,10 +369,6 @@ function prepareQuestions(previousFirstQuestion = null) {
         [...window.questionBank];
 
 
-    // ======================================
-    // FILTRAR POR CATEGORÍA
-    // ======================================
-
     if (selectedCategory !== "mixed") {
 
         available =
@@ -343,19 +379,11 @@ function prepareQuestions(previousFirstQuestion = null) {
     }
 
 
-    // ======================================
-    // FILTRAR POR DIFICULTAD
-    // ======================================
-
     available =
         available.filter(question =>
             question.difficulty === selectedDifficulty
         );
 
-
-    // ======================================
-    // COMPROBAR DISPONIBILIDAD
-    // ======================================
 
     if (available.length === 0) {
 
@@ -371,10 +399,6 @@ function prepareQuestions(previousFirstQuestion = null) {
 
     }
 
-
-    // ======================================
-    // EVITAR PRIMERA PREGUNTA REPETIDA
-    // ======================================
 
     if (
         previousFirstQuestion &&
@@ -396,18 +420,10 @@ function prepareQuestions(previousFirstQuestion = null) {
     }
 
 
-    // ======================================
-    // MEZCLAR
-    // ======================================
-
     shuffleArray(available);
 
     gameQuestions = [];
 
-
-    // ======================================
-    // CREAR PARTIDA
-    // ======================================
 
     for (
         let i = 0;
@@ -435,7 +451,11 @@ function prepareQuestions(previousFirstQuestion = null) {
                 [...originalQuestion.answers],
 
             correct:
-                originalQuestion.correct
+                originalQuestion.correct,
+
+            hint:
+                originalQuestion.hint ||
+                "Piensa cuidadosamente en la respuesta."
 
         };
 
@@ -446,16 +466,8 @@ function prepareQuestions(previousFirstQuestion = null) {
     }
 
 
-    // ======================================
-    // MEZCLAR NUEVAMENTE
-    // ======================================
-
     shuffleArray(gameQuestions);
 
-
-    // ======================================
-    // ASEGURAR PRIMERA DIFERENTE
-    // ======================================
 
     if (
         previousFirstQuestion &&
@@ -494,7 +506,7 @@ function prepareQuestions(previousFirstQuestion = null) {
 
 
 // ==========================================
-// MEZCLAR ARRAY
+// MEZCLAR
 // ==========================================
 
 function shuffleArray(array) {
@@ -534,6 +546,8 @@ function showQuestion() {
 
     clearInterval(timer);
 
+    ocultarPistaActual();
+
 
     if (
         currentQuestion >=
@@ -551,8 +565,6 @@ function showQuestion() {
         gameQuestions[currentQuestion];
 
 
-    // CONTADOR
-
     const counter =
         document.getElementById(
             "questionCounter"
@@ -565,8 +577,6 @@ function showQuestion() {
 
     }
 
-
-    // PROGRESO
 
     const progress =
         document.getElementById(
@@ -585,8 +595,6 @@ function showQuestion() {
     }
 
 
-    // CATEGORÍA
-
     const category =
         document.getElementById(
             "currentCategory"
@@ -602,8 +610,6 @@ function showQuestion() {
     }
 
 
-    // PREGUNTA
-
     const questionText =
         document.getElementById(
             "questionText"
@@ -616,8 +622,6 @@ function showQuestion() {
 
     }
 
-
-    // RESPUESTAS
 
     for (
         let i = 0;
@@ -659,6 +663,8 @@ function showQuestion() {
     }
 
 
+    actualizarPistasEnJuego();
+
     updateScore();
 
     updateStreak();
@@ -669,7 +675,7 @@ function showQuestion() {
 
 
 // ==========================================
-// NOMBRE DE CATEGORÍA
+// NOMBRE CATEGORÍA
 // ==========================================
 
 function getCategoryName(category) {
@@ -687,7 +693,6 @@ function getCategoryName(category) {
 
     };
 
-
     return (
         names[category] ||
         "Desafío Mixto"
@@ -697,7 +702,7 @@ function getCategoryName(category) {
 
 
 // ==========================================
-// TEMPORIZADOR
+// TEMPORIZADOR DEL JUEGO
 // ==========================================
 
 function startTimer() {
@@ -709,22 +714,18 @@ function startTimer() {
             selectedDifficulty
         ];
 
-
     timeLeft =
         difficulty
             ? difficulty.time
             : 50;
 
-
     updateTimer();
-
 
     timer = setInterval(() => {
 
         timeLeft--;
 
         updateTimer();
-
 
         if (timeLeft <= 0) {
 
@@ -749,7 +750,6 @@ function updateTimer() {
         document.getElementById(
             "timer"
         );
-
 
     if (timerElement) {
 
@@ -776,16 +776,13 @@ function timeOut() {
 
     }
 
-
     const question =
         gameQuestions[currentQuestion];
-
 
     const buttons =
         document.querySelectorAll(
             ".answer"
         );
-
 
     buttons.forEach(button => {
 
@@ -796,7 +793,6 @@ function timeOut() {
         );
 
     });
-
 
     if (
         buttons[question.correct]
@@ -809,20 +805,17 @@ function timeOut() {
 
     }
 
-
     wrongAnswers++;
 
     currentStreak = 0;
 
     updateStreak();
 
-
     vibrate([
         100,
         50,
         100
     ]);
-
 
     setTimeout(() => {
 
@@ -850,19 +843,15 @@ function selectAnswer(index) {
 
     }
 
-
     clearInterval(timer);
-
 
     const question =
         gameQuestions[currentQuestion];
-
 
     const buttons =
         document.querySelectorAll(
             ".answer"
         );
-
 
     buttons.forEach(button => {
 
@@ -870,8 +859,6 @@ function selectAnswer(index) {
 
     });
 
-
-    // CORRECTA
 
     if (
         index ===
@@ -927,9 +914,6 @@ function selectAnswer(index) {
         vibrate([50]);
 
     }
-
-
-    // INCORRECTA
 
     else {
 
@@ -996,7 +980,6 @@ function updateScore() {
             "gameScore"
         );
 
-
     if (scoreElement) {
 
         scoreElement.textContent =
@@ -1017,7 +1000,6 @@ function updateStreak() {
         document.getElementById(
             "currentStreak"
         );
-
 
     if (streakElement) {
 
@@ -1106,34 +1088,20 @@ function finishGame() {
 
 
     if (finalScore) {
-
-        finalScore.textContent =
-            score;
-
+        finalScore.textContent = score;
     }
-
 
     if (correct) {
-
-        correct.textContent =
-            correctAnswers;
-
+        correct.textContent = correctAnswers;
     }
-
 
     if (wrong) {
-
-        wrong.textContent =
-            wrongAnswers;
-
+        wrong.textContent = wrongAnswers;
     }
 
-
     if (accuracyElement) {
-
         accuracyElement.textContent =
             `${accuracy}%`;
-
     }
 
 
@@ -1178,12 +1146,9 @@ function finishGame() {
             "bestScore"
         );
 
-
     if (bestScoreElement) {
-
         bestScoreElement.textContent =
             bestScore;
-
     }
 
 
@@ -1192,12 +1157,9 @@ function finishGame() {
             "bestStreak"
         );
 
-
     if (bestStreakElement) {
-
         bestStreakElement.textContent =
             bestStreak;
-
     }
 
 
@@ -1206,12 +1168,9 @@ function finishGame() {
             "progressFill"
         );
 
-
     if (progress) {
-
         progress.style.width =
             "100%";
-
     }
 
 }
@@ -1293,7 +1252,6 @@ function openGameMenu() {
             "gameMenu"
         );
 
-
     if (menu) {
 
         menu.classList.remove(
@@ -1311,7 +1269,6 @@ function closeGameMenu() {
         document.getElementById(
             "gameMenu"
         );
-
 
     if (menu) {
 
@@ -1354,7 +1311,6 @@ function openHowToPlay() {
             "howToPlay"
         );
 
-
     if (modal) {
 
         modal.classList.remove(
@@ -1372,7 +1328,6 @@ function closeHowToPlay() {
         document.getElementById(
             "howToPlay"
         );
-
 
     if (modal) {
 
@@ -1400,14 +1355,11 @@ function startMusic() {
 
     }
 
-
     music.volume =
         0.25;
 
-
     const promise =
         music.play();
-
 
     if (promise) {
 
@@ -1421,11 +1373,8 @@ function startMusic() {
 function stopMusic() {
 
     if (!music) {
-
         return;
-
     }
-
 
     music.pause();
 
@@ -1440,15 +1389,12 @@ function toggleMusic() {
     musicEnabled =
         !musicEnabled;
 
-
     localStorage.setItem(
         "musicEnabled",
         musicEnabled
     );
 
-
     updateSettings();
-
 
     if (musicEnabled) {
 
@@ -1489,15 +1435,12 @@ function toggleVibration() {
     vibrationEnabled =
         !vibrationEnabled;
 
-
     localStorage.setItem(
         "vibrationEnabled",
         vibrationEnabled
     );
 
-
     updateSettings();
-
 
     if (vibrationEnabled) {
 
@@ -1586,6 +1529,425 @@ function updateSettings() {
 
 
 // ==========================================
+// 💡💡💡 SISTEMA DE PISTAS 💡💡💡
+// ==========================================
+
+function guardarDatosPistas() {
+
+    localStorage.setItem(
+        "desafioPistas",
+        dmPistas
+    );
+
+    localStorage.setItem(
+        "desafioMonedas",
+        dmMonedas
+    );
+
+    localStorage.setItem(
+        "desafioUltimaPista",
+        dmUltimaPista
+    );
+
+}
+
+
+// ==========================================
+// REVISAR PISTA GRATIS
+// ==========================================
+
+function revisarPistaGratis() {
+
+    const ahora =
+        Date.now();
+
+    const transcurrido =
+        ahora - dmUltimaPista;
+
+
+    if (
+        transcurrido >=
+        DM_TIEMPO_PISTA
+    ) {
+
+        const nuevasPistas =
+            Math.floor(
+                transcurrido /
+                DM_TIEMPO_PISTA
+            );
+
+
+        dmPistas +=
+            nuevasPistas;
+
+
+        dmUltimaPista +=
+            nuevasPistas *
+            DM_TIEMPO_PISTA;
+
+
+        guardarDatosPistas();
+
+
+        console.log(
+            `💡 Ganaste ${nuevasPistas} pista(s) gratis.`
+        );
+
+    }
+
+}
+
+
+// ==========================================
+// ACTUALIZAR PANEL DE PISTAS
+// ==========================================
+
+function actualizarPanelPistas() {
+
+    revisarPistaGratis();
+
+
+    const cantidad =
+        document.getElementById(
+            "cantidadPistas"
+        );
+
+
+    const monedas =
+        document.getElementById(
+            "cantidadMonedas"
+        );
+
+
+    const contador =
+        document.getElementById(
+            "contadorPistas"
+        );
+
+
+    if (cantidad) {
+
+        cantidad.textContent =
+            dmPistas;
+
+    }
+
+
+    if (monedas) {
+
+        monedas.textContent =
+            dmMonedas;
+
+    }
+
+
+    if (contador) {
+
+        const restante =
+            Math.max(
+                0,
+                DM_TIEMPO_PISTA -
+                (
+                    Date.now() -
+                    dmUltimaPista
+                )
+            );
+
+
+        const minutos =
+            Math.floor(
+                restante / 60000
+            );
+
+
+        const segundos =
+            Math.floor(
+                (restante % 60000) /
+                1000
+            );
+
+
+        contador.textContent =
+            `${String(minutos).padStart(2, "0")}:${String(segundos).padStart(2, "0")}`;
+
+    }
+
+}
+
+
+// ==========================================
+// ABRIR PISTAS
+// ==========================================
+
+function abrirPistas() {
+
+    const panel =
+        document.getElementById(
+            "panelPistas"
+        );
+
+
+    if (panel) {
+
+        panel.classList.remove(
+            "hidden"
+        );
+
+    }
+
+
+    actualizarPanelPistas();
+
+}
+
+
+// ==========================================
+// CERRAR PISTAS
+// ==========================================
+
+function cerrarPistas() {
+
+    const panel =
+        document.getElementById(
+            "panelPistas"
+        );
+
+
+    if (panel) {
+
+        panel.classList.add(
+            "hidden"
+        );
+
+    }
+
+}
+
+
+// ==========================================
+// COMPRAR 1 PISTA
+// ==========================================
+
+function comprarPista() {
+
+    revisarPistaGratis();
+
+
+    if (
+        dmMonedas < 100
+    ) {
+
+        alert(
+            "❌ No tienes suficientes monedas."
+        );
+
+        return;
+
+    }
+
+
+    dmMonedas -= 100;
+
+    dmPistas += 1;
+
+
+    guardarDatosPistas();
+
+    actualizarPanelPistas();
+
+
+    alert(
+        "💡 ¡Compraste 1 pista!"
+    );
+
+}
+
+
+// ==========================================
+// COMPRAR 5 PISTAS
+// ==========================================
+
+function comprarCincoPistas() {
+
+    revisarPistaGratis();
+
+
+    if (
+        dmMonedas < 400
+    ) {
+
+        alert(
+            "❌ No tienes suficientes monedas."
+        );
+
+        return;
+
+    }
+
+
+    dmMonedas -= 400;
+
+    dmPistas += 5;
+
+
+    guardarDatosPistas();
+
+    actualizarPanelPistas();
+
+
+    alert(
+        "💡 ¡Compraste 5 pistas!"
+    );
+
+}
+
+
+// ==========================================
+// ACTUALIZAR PISTAS DURANTE EL JUEGO
+// ==========================================
+
+function actualizarPistasEnJuego() {
+
+    revisarPistaGratis();
+
+
+    const elemento =
+        document.getElementById(
+            "pistasEnJuego"
+        );
+
+
+    const boton =
+        document.getElementById(
+            "usarPistaButton"
+        );
+
+
+    if (elemento) {
+
+        elemento.textContent =
+            dmPistas;
+
+    }
+
+
+    if (boton) {
+
+        boton.disabled =
+            dmPistas <= 0;
+
+    }
+
+}
+
+
+// ==========================================
+// OCULTAR PISTA
+// ==========================================
+
+function ocultarPistaActual() {
+
+    const pista =
+        document.getElementById(
+            "pistaActual"
+        );
+
+
+    if (pista) {
+
+        pista.classList.add(
+            "hidden"
+        );
+
+        pista.textContent =
+            "";
+
+    }
+
+}
+
+
+// ==========================================
+// USAR PISTA
+// ==========================================
+
+function usarPista() {
+
+    revisarPistaGratis();
+
+
+    if (
+        dmPistas <= 0
+    ) {
+
+        alert(
+            "❌ No tienes pistas. Puedes conseguir una gratis cada 50 minutos o comprarla con monedas."
+        );
+
+        return;
+
+    }
+
+
+    if (
+        currentQuestion >=
+        gameQuestions.length
+    ) {
+
+        return;
+
+    }
+
+
+    const question =
+        gameQuestions[currentQuestion];
+
+
+    dmPistas--;
+
+
+    guardarDatosPistas();
+
+
+    const pista =
+        document.getElementById(
+            "pistaActual"
+        );
+
+
+    if (pista) {
+
+        pista.textContent =
+            "💡 PISTA: " +
+            (
+                question.hint ||
+                "Analiza las opciones y descarta las que no tengan sentido."
+            );
+
+
+        pista.classList.remove(
+            "hidden"
+        );
+
+    }
+
+
+    actualizarPistasEnJuego();
+
+
+    vibrate([
+        50
+    ]);
+
+
+    console.log(
+        "💡 Pista utilizada."
+    );
+
+}
+
+
+// ==========================================
 // MULTIJUGADOR
 // ==========================================
 
@@ -1631,7 +1993,7 @@ function showJoinRoom() {
 
 
 // ==========================================
-// CREAR SALA REAL CON FIREBASE
+// CREAR SALA
 // ==========================================
 
 function createRoom() {
@@ -1756,9 +2118,11 @@ function createRoom() {
                 error
             );
 
+
             roomCode = "";
 
             isHost = false;
+
 
             alert(
                 "No se pudo crear la sala. Revisa la conexión con Firebase."
@@ -1782,7 +2146,7 @@ function createRoom() {
 
 
 // ==========================================
-// UNIRSE A SALA REAL
+// UNIRSE
 // ==========================================
 
 function joinRoom() {
@@ -1994,19 +2358,20 @@ function joinRoom() {
 
 
 // ==========================================
-// ESCUCHAR CAMBIOS DE LA SALA
+// ESCUCHAR SALA
 // ==========================================
 
 function listenToRoom() {
 
     if (!roomCode) {
-
         return;
-
     }
 
 
-    if (roomListener && roomRef) {
+    if (
+        roomListener &&
+        roomRef
+    ) {
 
         roomRef.off(
             "value",
@@ -2074,10 +2439,6 @@ function listenToRoom() {
                 );
 
 
-            // =================================
-            // JUGADOR 2 CONECTADO
-            // =================================
-
             if (room.guest) {
 
                 const name =
@@ -2118,8 +2479,6 @@ function listenToRoom() {
 
                 }
 
-
-                // SOLO EL ANFITRIÓN VE INICIAR
 
                 if (
                     isHost &&
@@ -2180,10 +2539,6 @@ function listenToRoom() {
             }
 
 
-            // =================================
-            // PARTIDA INICIADA
-            // =================================
-
             if (
                 room.status ===
                 "playing"
@@ -2209,13 +2564,17 @@ function listenToRoom() {
                 }
 
 
+                const game =
+                    document.getElementById(
+                        "gameScreen"
+                    );
+
+
                 if (
-                    !document
-                        .getElementById(
-                            "gameScreen"
-                        )
-                        .classList
-                        .contains("active")
+                    game &&
+                    !game.classList.contains(
+                        "active"
+                    )
                 ) {
 
                     startMultiplayerLocally();
@@ -2232,10 +2591,6 @@ function listenToRoom() {
         roomListener
     );
 
-
-    // ==========================================
-    // PRESENCIA
-    // ==========================================
 
     if (isHost) {
 
@@ -2262,7 +2617,7 @@ function listenToRoom() {
 
 
 // ==========================================
-// INICIAR PARTIDA - SOLO ANFITRIÓN
+// INICIAR MULTIJUGADOR
 // ==========================================
 
 function startMultiplayerGame() {
@@ -2306,10 +2661,6 @@ function startMultiplayerGame() {
     }
 
 
-    // ======================================
-    // CONFIGURACIÓN DE LA PARTIDA
-    // ======================================
-
     const settings = {
 
         category:
@@ -2352,6 +2703,7 @@ function startMultiplayerGame() {
                 error
             );
 
+
             alert(
                 "No se pudo iniciar la partida."
             );
@@ -2373,13 +2725,12 @@ function startMultiplayerGame() {
 
 
 // ==========================================
-// INICIAR JUEGO LOCAL DEL MULTIJUGADOR
+// JUEGO MULTIJUGADOR LOCAL
 // ==========================================
 
 function startMultiplayerLocally() {
 
     clearInterval(timer);
-
 
     prepareQuestions();
 
@@ -2471,12 +2822,12 @@ function stopRoomListener() {
 // LIMPIAR CONEXIÓN
 // ==========================================
 
-function cleanupRoomConnection(removeRoom = false) {
+function cleanupRoomConnection(
+    removeRoom = false
+) {
 
     if (!roomRef) {
-
         return;
-
     }
 
 
@@ -2527,7 +2878,7 @@ function cleanupRoomConnection(removeRoom = false) {
 
 
 // ==========================================
-// CÓDIGO DE SALA
+// GENERAR CÓDIGO
 // ==========================================
 
 function generateRoomCode() {
@@ -2561,7 +2912,7 @@ function generateRoomCode() {
 
 
 // ==========================================
-// REINICIAR INTERFAZ DE SALA
+// REINICIAR SALA
 // ==========================================
 
 function resetRoomUI() {
@@ -2622,9 +2973,7 @@ function resetRoomUI() {
 function copyRoomCode() {
 
     if (!roomCode) {
-
         return;
-
     }
 
 
@@ -2764,6 +3113,10 @@ document.addEventListener(
 
         loadSettings();
 
+        revisarPistaGratis();
+
+        actualizarPanelPistas();
+
         showScreen(
             "homeScreen"
         );
@@ -2785,5 +3138,27 @@ document.addEventListener(
             bestStreak
         );
 
+
+        console.log(
+            "💡 Pistas:",
+            dmPistas
+        );
+
+
+        console.log(
+            "🪙 Monedas:",
+            dmMonedas
+        );
+
     }
+);
+
+
+// ==========================================
+// ACTUALIZAR CONTADOR DE PISTAS
+// ==========================================
+
+setInterval(
+    actualizarPanelPistas,
+    1000
 );
