@@ -31,6 +31,7 @@ let bestStreak =
 let musicEnabled = true;
 let vibrationEnabled = true;
 
+
 // ==========================================
 // 💡 SISTEMA DE PISTAS
 // ==========================================
@@ -42,12 +43,43 @@ if (Number.isNaN(dmPistas)) {
     dmPistas = 0;
 }
 
+
+// 🎁 REGALO DE BIENVENIDA: 3 PISTAS
+// Solo se entrega una vez por navegador.
+
+if (
+    localStorage.getItem("desafioWelcome3") !== "true"
+) {
+
+    dmPistas += 3;
+
+    localStorage.setItem(
+        "desafioWelcome3",
+        "true"
+    );
+
+    localStorage.setItem(
+        "desafioPistas",
+        dmPistas
+    );
+
+}
+
+
 let dmMonedas =
     Number(localStorage.getItem("desafioMonedas"));
 
 if (Number.isNaN(dmMonedas)) {
+
     dmMonedas = 500;
+
+    localStorage.setItem(
+        "desafioMonedas",
+        dmMonedas
+    );
+
 }
+
 
 let dmUltimaPista =
     Number(localStorage.getItem("desafioUltimaPista"));
@@ -56,13 +88,16 @@ if (
     Number.isNaN(dmUltimaPista) ||
     dmUltimaPista <= 0
 ) {
+
     dmUltimaPista = Date.now();
 
     localStorage.setItem(
         "desafioUltimaPista",
         dmUltimaPista
     );
+
 }
+
 
 const DM_TIEMPO_PISTA =
     50 * 60 * 1000;
@@ -129,8 +164,10 @@ function showScreen(id) {
 
         });
 
+
     const screen =
         document.getElementById(id);
+
 
     if (screen) {
 
@@ -150,8 +187,10 @@ function openPlayerScreen() {
 
     showScreen("playerScreen");
 
+
     const input =
         document.getElementById("playerName");
+
 
     if (input) {
 
@@ -169,16 +208,20 @@ function continueToCategories() {
     const input =
         document.getElementById("playerName");
 
+
     if (!input) return;
+
 
     playerName =
         input.value.trim();
+
 
     if (playerName === "") {
 
         playerName = "Jugador";
 
     }
+
 
     showScreen("categoryScreen");
 
@@ -195,11 +238,13 @@ function goHome() {
 
     stopMusic();
 
+
     if (roomCode) {
 
         cleanupRoomConnection(false);
 
     }
+
 
     showScreen("homeScreen");
 
@@ -214,6 +259,7 @@ function selectCategory(category) {
 
     selectedCategory = category;
 
+
     document.querySelectorAll(".category-card")
         .forEach(card => {
 
@@ -221,16 +267,19 @@ function selectCategory(category) {
 
         });
 
+
     const selected =
         document.querySelector(
             `.category-card[onclick="selectCategory('${category}')"]`
         );
+
 
     if (selected) {
 
         selected.classList.add("selected");
 
     }
+
 
     showScreen("amountScreen");
 
@@ -252,6 +301,7 @@ function selectAmount(amount) {
 
     selectedAmount =
         Number(amount);
+
 
     showScreen("difficultyScreen");
 
@@ -275,8 +325,10 @@ function selectDifficulty(difficulty) {
         return;
     }
 
+
     selectedDifficulty =
         difficulty;
+
 
     showScreen("gameScreen");
 
@@ -293,10 +345,13 @@ function startGame(amount) {
 
     clearInterval(timer);
 
+
     selectedAmount =
         Number(amount);
 
+
     prepareQuestions();
+
 
     if (gameQuestions.length === 0) {
 
@@ -304,11 +359,13 @@ function startGame(amount) {
             "No hay preguntas disponibles para esta categoría y dificultad."
         );
 
+
         showScreen("difficultyScreen");
 
         return;
 
     }
+
 
     currentQuestion = 0;
 
@@ -320,14 +377,17 @@ function startGame(amount) {
 
     currentStreak = 0;
 
+
     const opponentBar =
         document.getElementById("opponentBar");
+
 
     if (opponentBar) {
 
         opponentBar.classList.add("hidden");
 
     }
+
 
     showScreen("gameScreen");
 
@@ -359,11 +419,13 @@ function prepareQuestions(
             "❌ No se encontró window.questionBank"
         );
 
+
         gameQuestions = [];
 
         return;
 
     }
+
 
     let available =
         [...window.questionBank];
@@ -393,6 +455,7 @@ function prepareQuestions(
             selectedDifficulty
         );
 
+
         gameQuestions = [];
 
         return;
@@ -409,6 +472,7 @@ function prepareQuestions(
             available.filter(question =>
                 question.question !== previousFirstQuestion
             );
+
 
         if (differentQuestions.length > 0) {
 
@@ -436,6 +500,7 @@ function prepareQuestions(
                 i % available.length
             ];
 
+
         const newQuestion = {
 
             category:
@@ -459,6 +524,7 @@ function prepareQuestions(
 
         };
 
+
         gameQuestions.push(
             newQuestion
         );
@@ -479,6 +545,7 @@ function prepareQuestions(
             gameQuestions.findIndex(question =>
                 question.question !== previousFirstQuestion
             );
+
 
         if (differentIndex !== -1) {
 
@@ -522,6 +589,7 @@ function shuffleArray(array) {
                 Math.random() * (i + 1)
             );
 
+
         [
             array[i],
             array[j]
@@ -532,6 +600,7 @@ function shuffleArray(array) {
         ];
 
     }
+
 
     return array;
 
@@ -570,6 +639,7 @@ function showQuestion() {
             "questionCounter"
         );
 
+
     if (counter) {
 
         counter.textContent =
@@ -583,11 +653,13 @@ function showQuestion() {
             "progressFill"
         );
 
+
     if (progress) {
 
         const percentage =
             (currentQuestion /
             gameQuestions.length) * 100;
+
 
         progress.style.width =
             `${percentage}%`;
@@ -599,6 +671,7 @@ function showQuestion() {
         document.getElementById(
             "currentCategory"
         );
+
 
     if (category) {
 
@@ -614,6 +687,7 @@ function showQuestion() {
         document.getElementById(
             "questionText"
         );
+
 
     if (questionText) {
 
@@ -633,6 +707,7 @@ function showQuestion() {
             document.getElementById(
                 `answer${i}`
             );
+
 
         const button =
             answer
@@ -693,6 +768,7 @@ function getCategoryName(category) {
 
     };
 
+
     return (
         names[category] ||
         "Desafío Mixto"
@@ -709,23 +785,28 @@ function startTimer() {
 
     clearInterval(timer);
 
+
     const difficulty =
         difficultySettings[
             selectedDifficulty
         ];
+
 
     timeLeft =
         difficulty
             ? difficulty.time
             : 50;
 
+
     updateTimer();
+
 
     timer = setInterval(() => {
 
         timeLeft--;
 
         updateTimer();
+
 
         if (timeLeft <= 0) {
 
@@ -750,6 +831,7 @@ function updateTimer() {
         document.getElementById(
             "timer"
         );
+
 
     if (timerElement) {
 
@@ -776,13 +858,16 @@ function timeOut() {
 
     }
 
+
     const question =
         gameQuestions[currentQuestion];
+
 
     const buttons =
         document.querySelectorAll(
             ".answer"
         );
+
 
     buttons.forEach(button => {
 
@@ -793,6 +878,7 @@ function timeOut() {
         );
 
     });
+
 
     if (
         buttons[question.correct]
@@ -805,17 +891,20 @@ function timeOut() {
 
     }
 
+
     wrongAnswers++;
 
     currentStreak = 0;
 
     updateStreak();
 
+
     vibrate([
         100,
         50,
         100
     ]);
+
 
     setTimeout(() => {
 
@@ -843,15 +932,19 @@ function selectAnswer(index) {
 
     }
 
+
     clearInterval(timer);
+
 
     const question =
         gameQuestions[currentQuestion];
+
 
     const buttons =
         document.querySelectorAll(
             ".answer"
         );
+
 
     buttons.forEach(button => {
 
@@ -877,6 +970,7 @@ function selectAnswer(index) {
 
             bestStreak =
                 currentStreak;
+
 
             localStorage.setItem(
                 "bestStreak",
@@ -980,6 +1074,7 @@ function updateScore() {
             "gameScore"
         );
 
+
     if (scoreElement) {
 
         scoreElement.textContent =
@@ -1001,6 +1096,7 @@ function updateStreak() {
             "currentStreak"
         );
 
+
     if (streakElement) {
 
         streakElement.textContent =
@@ -1020,6 +1116,7 @@ function finishGame() {
     clearInterval(timer);
 
     stopMusic();
+
 
     showScreen(
         "resultScreen"
@@ -1051,10 +1148,12 @@ function finishGame() {
         bestScore =
             score;
 
+
         localStorage.setItem(
             "bestScore",
             bestScore
         );
+
 
         newRecord = true;
 
@@ -1066,20 +1165,24 @@ function finishGame() {
             "finalScore"
         );
 
+
     const correct =
         document.getElementById(
             "correctAnswers"
         );
+
 
     const wrong =
         document.getElementById(
             "wrongAnswers"
         );
 
+
     const accuracyElement =
         document.getElementById(
             "accuracy"
         );
+
 
     const message =
         document.getElementById(
@@ -1091,17 +1194,22 @@ function finishGame() {
         finalScore.textContent = score;
     }
 
+
     if (correct) {
         correct.textContent = correctAnswers;
     }
+
 
     if (wrong) {
         wrong.textContent = wrongAnswers;
     }
 
+
     if (accuracyElement) {
+
         accuracyElement.textContent =
             `${accuracy}%`;
+
     }
 
 
@@ -1146,9 +1254,12 @@ function finishGame() {
             "bestScore"
         );
 
+
     if (bestScoreElement) {
+
         bestScoreElement.textContent =
             bestScore;
+
     }
 
 
@@ -1157,9 +1268,12 @@ function finishGame() {
             "bestStreak"
         );
 
+
     if (bestStreakElement) {
+
         bestStreakElement.textContent =
             bestStreak;
+
     }
 
 
@@ -1168,9 +1282,12 @@ function finishGame() {
             "progressFill"
         );
 
+
     if (progress) {
+
         progress.style.width =
             "100%";
+
     }
 
 }
@@ -1221,6 +1338,7 @@ function restartGame() {
             "No hay preguntas disponibles para esta categoría y dificultad."
         );
 
+
         showScreen("difficultyScreen");
 
         return;
@@ -1252,6 +1370,7 @@ function openGameMenu() {
             "gameMenu"
         );
 
+
     if (menu) {
 
         menu.classList.remove(
@@ -1269,6 +1388,7 @@ function closeGameMenu() {
         document.getElementById(
             "gameMenu"
         );
+
 
     if (menu) {
 
@@ -1293,6 +1413,7 @@ function exitGame() {
 
     closeGameMenu();
 
+
     showScreen(
         "homeScreen"
     );
@@ -1311,6 +1432,7 @@ function openHowToPlay() {
             "howToPlay"
         );
 
+
     if (modal) {
 
         modal.classList.remove(
@@ -1328,6 +1450,7 @@ function closeHowToPlay() {
         document.getElementById(
             "howToPlay"
         );
+
 
     if (modal) {
 
@@ -1355,11 +1478,14 @@ function startMusic() {
 
     }
 
+
     music.volume =
         0.25;
 
+
     const promise =
         music.play();
+
 
     if (promise) {
 
@@ -1376,6 +1502,7 @@ function stopMusic() {
         return;
     }
 
+
     music.pause();
 
     music.currentTime =
@@ -1389,12 +1516,15 @@ function toggleMusic() {
     musicEnabled =
         !musicEnabled;
 
+
     localStorage.setItem(
         "musicEnabled",
         musicEnabled
     );
 
+
     updateSettings();
+
 
     if (musicEnabled) {
 
@@ -1435,12 +1565,15 @@ function toggleVibration() {
     vibrationEnabled =
         !vibrationEnabled;
 
+
     localStorage.setItem(
         "vibrationEnabled",
         vibrationEnabled
     );
 
+
     updateSettings();
+
 
     if (vibrationEnabled) {
 
@@ -1461,6 +1594,7 @@ function loadSettings() {
         localStorage.getItem(
             "musicEnabled"
         );
+
 
     const vibrationSetting =
         localStorage.getItem(
@@ -1500,6 +1634,7 @@ function updateSettings() {
             "musicStatus"
         );
 
+
     const vibrationStatus =
         document.getElementById(
             "vibrationStatus"
@@ -1529,7 +1664,7 @@ function updateSettings() {
 
 
 // ==========================================
-// 💡💡💡 SISTEMA DE PISTAS 💡💡💡
+// 💡 SISTEMA DE PISTAS
 // ==========================================
 
 function guardarDatosPistas() {
@@ -1539,10 +1674,12 @@ function guardarDatosPistas() {
         dmPistas
     );
 
+
     localStorage.setItem(
         "desafioMonedas",
         dmMonedas
     );
+
 
     localStorage.setItem(
         "desafioUltimaPista",
@@ -1560,6 +1697,7 @@ function revisarPistaGratis() {
 
     const ahora =
         Date.now();
+
 
     const transcurrido =
         ahora - dmUltimaPista;
@@ -1613,6 +1751,12 @@ function actualizarPanelPistas() {
         );
 
 
+    const cantidadTienda =
+        document.getElementById(
+            "tiendaCantidadPistas"
+        );
+
+
     const monedas =
         document.getElementById(
             "cantidadMonedas"
@@ -1628,6 +1772,14 @@ function actualizarPanelPistas() {
     if (cantidad) {
 
         cantidad.textContent =
+            dmPistas;
+
+    }
+
+
+    if (cantidadTienda) {
+
+        cantidadTienda.textContent =
             dmPistas;
 
     }
@@ -1676,7 +1828,7 @@ function actualizarPanelPistas() {
 
 
 // ==========================================
-// ABRIR PISTAS
+// 💡 ABRIR MIS PISTAS
 // ==========================================
 
 function abrirPistas() {
@@ -1702,7 +1854,7 @@ function abrirPistas() {
 
 
 // ==========================================
-// CERRAR PISTAS
+// CERRAR MIS PISTAS
 // ==========================================
 
 function cerrarPistas() {
@@ -1725,7 +1877,60 @@ function cerrarPistas() {
 
 
 // ==========================================
-// COMPRAR 1 PISTA
+// 🛒 ABRIR TIENDA
+// ==========================================
+
+function abrirTiendaPistas() {
+
+    // Cerramos el panel de pistas si estaba abierto.
+    cerrarPistas();
+
+
+    const tienda =
+        document.getElementById(
+            "tiendaPistas"
+        );
+
+
+    if (tienda) {
+
+        tienda.classList.remove(
+            "hidden"
+        );
+
+    }
+
+
+    actualizarPanelPistas();
+
+}
+
+
+// ==========================================
+// 🛒 CERRAR TIENDA
+// ==========================================
+
+function cerrarTiendaPistas() {
+
+    const tienda =
+        document.getElementById(
+            "tiendaPistas"
+        );
+
+
+    if (tienda) {
+
+        tienda.classList.add(
+            "hidden"
+        );
+
+    }
+
+}
+
+
+// ==========================================
+// 🪙 COMPRAR 1 PISTA CON MONEDAS
 // ==========================================
 
 function comprarPista() {
@@ -1757,14 +1962,14 @@ function comprarPista() {
 
 
     alert(
-        "💡 ¡Compraste 1 pista!"
+        "💡 ¡Compraste 1 pista con monedas!"
     );
 
 }
 
 
 // ==========================================
-// COMPRAR 5 PISTAS
+// 🪙 COMPRAR 5 PISTAS CON MONEDAS
 // ==========================================
 
 function comprarCincoPistas() {
@@ -1796,7 +2001,44 @@ function comprarCincoPistas() {
 
 
     alert(
-        "💡 ¡Compraste 5 pistas!"
+        "💡 ¡Compraste 5 pistas con monedas!"
+    );
+
+}
+
+
+// ==========================================
+// 💳 COMPRAS CON DINERO REAL
+// ==========================================
+//
+// IMPORTANTE:
+// Estas funciones NO entregan pistas todavía.
+//
+// El pago real debe ser confirmado por un
+// servidor/proveedor de pagos antes de dar
+// las pistas.
+//
+// ==========================================
+
+function iniciarCompraPista(cantidad, precio) {
+
+    console.log(
+        "🛒 Compra solicitada:",
+        cantidad,
+        "pistas por",
+        precio,
+        "COP"
+    );
+
+
+    alert(
+        "💳 La compra real estará disponible próximamente.\n\n" +
+        "Paquete: " +
+        cantidad +
+        " pista(s)\n" +
+        "Precio: $" +
+        precio.toLocaleString("es-CO") +
+        " COP"
     );
 
 }
@@ -1859,6 +2101,7 @@ function ocultarPistaActual() {
             "hidden"
         );
 
+
         pista.textContent =
             "";
 
@@ -1881,7 +2124,7 @@ function usarPista() {
     ) {
 
         alert(
-            "❌ No tienes pistas. Puedes conseguir una gratis cada 50 minutos o comprarla con monedas."
+            "❌ No tienes pistas. Puedes conseguir una gratis cada 50 minutos o conseguir más desde la tienda."
         );
 
         return;
@@ -2396,15 +2639,18 @@ function listenToRoom() {
                     "⚠️ La sala ya no existe."
                 );
 
+
                 stopRoomListener();
 
                 roomCode = "";
 
                 isHost = false;
 
+
                 showScreen(
                     "multiplayerScreen"
                 );
+
 
                 return;
 
@@ -2552,10 +2798,12 @@ function listenToRoom() {
                         room.settings.category ||
                         "mixed";
 
+
                     selectedAmount =
                         Number(
                             room.settings.amount
                         ) || 10;
+
 
                     selectedDifficulty =
                         room.settings.difficulty ||
@@ -2813,6 +3061,7 @@ function stopRoomListener() {
 
     }
 
+
     roomListener = null;
 
 }
@@ -2886,6 +3135,7 @@ function generateRoomCode() {
     const characters =
         "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
+
     let code = "";
 
 
@@ -2922,10 +3172,12 @@ function resetRoomUI() {
             "guestName"
         );
 
+
     const waiting =
         document.getElementById(
             "waitingText"
         );
+
 
     const startButton =
         document.getElementById(
