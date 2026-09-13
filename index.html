@@ -78,98 +78,461 @@
       </button>
 
     </div>
-<!-- ============================= -->
 
-<!-- TÉRMINOS Y CONDICIONES -->
+    <!-- =========================
+         PIE LEGAL
+    ========================== -->
 
-<!-- ============================= -->
+    <footer class="legal-footer">
 
-<section id="terminos" class="pagina legal-page">
-    <div class="legal-container">
+      <div class="legal-footer-links">
 
-```
-    <button class="legal-back" onclick="mostrarPagina('inicio')">
-        Volver al inicio
-    </button>
+        <button onclick="openLegalScreen('terminosScreen')">
+          Términos y condiciones
+        </button>
 
-    <div class="legal-header">
-        <span class="legal-label">INFORMACIÓN LEGAL</span>
-        <h1>Términos y condiciones</h1>
-        <p>
-            Última actualización: septiembre de 2026
-        </p>
-    </div>
+        <button onclick="openLegalScreen('privacidadScreen')">
+          Política de privacidad
+        </button>
 
-    <div class="legal-content">
+        <button onclick="openLegalScreen('seguridadScreen')">
+          Seguridad
+        </button>
 
-        <h2>1. Aceptación de los términos</h2>
-        <p>
-            Al utilizar Desafío Mental, aceptas estos términos y condiciones.
-            Si no estás de acuerdo con ellos, debes dejar de utilizar el juego.
-        </p>
+        <button onclick="openLegalScreen('contactoScreen')">
+          Contacto
+        </button>
 
-        <h2>2. Uso del juego</h2>
-        <p>
-            Desafío Mental está diseñado como un juego de preguntas y respuestas
-            para fines de entretenimiento y aprendizaje.
-        </p>
+      </div>
 
-        <h2>3. Cuenta y nombre del jugador</h2>
-        <p>
-            El jugador debe utilizar un nombre apropiado y no debe utilizar
-            nombres que sean ofensivos, ilegales o que suplanten la identidad
-            de otra persona.
-        </p>
+      <p>
+        © 2026 Desafío Mental. Todos los derechos reservados.
+      </p>
 
-        <h2>4. Multijugador</h2>
-        <p>
-            Las funciones multijugador pueden permitir que diferentes jugadores
-            participen en una misma partida. No debes utilizar estas funciones
-            para acosar, amenazar, engañar o perjudicar a otros jugadores.
-        </p>
+    </footer>
 
-        <h2>5. Contenido</h2>
-        <p>
-            Las preguntas, textos, diseños y demás elementos de Desafío Mental
-            pueden ser modificados, actualizados o retirados en cualquier momento
-            para mejorar la experiencia del juego.
-        </p>
-
-        <h2>6. Uso responsable</h2>
-        <p>
-            Está prohibido utilizar el juego para actividades ilegales,
-            distribuir contenido malicioso, intentar afectar su funcionamiento
-            o acceder sin autorización a sistemas relacionados con el servicio.
-        </p>
-
-        <h2>7. Disponibilidad</h2>
-        <p>
-            Aunque buscamos mantener Desafío Mental disponible y funcionando
-            correctamente, pueden producirse interrupciones por mantenimiento,
-            actualizaciones, problemas técnicos o servicios externos.
-        </p>
-
-        <h2>8. Cambios</h2>
-        <p>
-            Estos términos pueden actualizarse cuando sea necesario. La versión
-            más reciente estará disponible dentro de Desafío Mental.
-        </p>
-
-        <h2>9. Contacto</h2>
-        <p>
-            Si tienes preguntas relacionadas con estos términos, puedes
-            comunicarte con el responsable del proyecto.
-        </p>
-
-    </div>
-</div>
-```
-
-</section>
-    
     <div class="home-footer">
       <span>🏆 70 preguntas</span>
       <span>⚡ Tiempo real</span>
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       TÉRMINOS Y CONDICIONES
+  ========================== -->
+
+  <section id="terminosScreen" class="screen legal-page">
+
+    <div class="legal-container">
+
+      <button
+        class="top-back"
+        onclick="openLegalScreen('homeScreen')"
+      >
+        ← Volver
+      </button>
+
+      <div class="legal-header">
+
+        <span class="legal-label">
+          INFORMACIÓN LEGAL
+        </span>
+
+        <h1>
+          Términos y condiciones
+        </h1>
+
+        <p>
+          Última actualización: septiembre de 2026
+        </p>
+
+      </div>
+
+      <div class="legal-content">
+
+        <h2>1. Aceptación de los términos</h2>
+
+        <p>
+          Al utilizar Desafío Mental, aceptas estos términos y condiciones.
+          Si no estás de acuerdo con ellos, debes dejar de utilizar el juego.
+        </p>
+
+
+        <h2>2. Uso del juego</h2>
+
+        <p>
+          Desafío Mental está diseñado como un juego de preguntas y respuestas
+          para fines de entretenimiento y aprendizaje.
+        </p>
+
+
+        <h2>3. Cuenta y nombre del jugador</h2>
+
+        <p>
+          El jugador debe utilizar un nombre apropiado y no debe utilizar
+          nombres que sean ofensivos, ilegales o que suplanten la identidad
+          de otra persona.
+        </p>
+
+
+        <h2>4. Multijugador</h2>
+
+        <p>
+          Las funciones multijugador pueden permitir que diferentes jugadores
+          participen en una misma partida. No debes utilizar estas funciones
+          para acosar, amenazar, engañar o perjudicar a otros jugadores.
+        </p>
+
+
+        <h2>5. Contenido</h2>
+
+        <p>
+          Las preguntas, textos, diseños y demás elementos de Desafío Mental
+          pueden ser modificados, actualizados o retirados en cualquier momento
+          para mejorar la experiencia del juego.
+        </p>
+
+
+        <h2>6. Uso responsable</h2>
+
+        <p>
+          Está prohibido utilizar el juego para actividades ilegales,
+          distribuir contenido malicioso, intentar afectar su funcionamiento
+          o acceder sin autorización a sistemas relacionados con el servicio.
+        </p>
+
+
+        <h2>7. Disponibilidad</h2>
+
+        <p>
+          Aunque buscamos mantener Desafío Mental disponible y funcionando
+          correctamente, pueden producirse interrupciones por mantenimiento,
+          actualizaciones, problemas técnicos o servicios externos.
+        </p>
+
+
+        <h2>8. Compras y pistas</h2>
+
+        <p>
+          Desafío Mental puede incluir funciones relacionadas con pistas,
+          monedas u otros elementos virtuales. Las funciones de pago pueden
+          cambiar o estar disponibles únicamente cuando el sistema de pagos
+          correspondiente se encuentre habilitado.
+        </p>
+
+
+        <h2>9. Cambios</h2>
+
+        <p>
+          Estos términos pueden actualizarse cuando sea necesario. La versión
+          más reciente estará disponible dentro de Desafío Mental.
+        </p>
+
+
+        <h2>10. Contacto</h2>
+
+        <p>
+          Si tienes preguntas relacionadas con estos términos, puedes
+          comunicarte con el responsable del proyecto mediante los medios
+          de contacto disponibles en la sección de contacto.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       POLÍTICA DE PRIVACIDAD
+  ========================== -->
+
+  <section id="privacidadScreen" class="screen legal-page">
+
+    <div class="legal-container">
+
+      <button
+        class="top-back"
+        onclick="openLegalScreen('homeScreen')"
+      >
+        ← Volver
+      </button>
+
+      <div class="legal-header">
+
+        <span class="legal-label">
+          INFORMACIÓN LEGAL
+        </span>
+
+        <h1>
+          Política de privacidad
+        </h1>
+
+        <p>
+          Última actualización: septiembre de 2026
+        </p>
+
+      </div>
+
+      <div class="legal-content">
+
+        <h2>1. Información que puede utilizar el juego</h2>
+
+        <p>
+          Desafío Mental puede utilizar información necesaria para permitir
+          el funcionamiento de las partidas, como el nombre elegido por el
+          jugador, información relacionada con la partida y datos técnicos
+          necesarios para prestar las funciones del juego.
+        </p>
+
+
+        <h2>2. Nombre del jugador</h2>
+
+        <p>
+          El nombre ingresado por el jugador puede utilizarse para identificarlo
+          durante las partidas y especialmente en las funciones multijugador.
+        </p>
+
+
+        <h2>3. Información de las partidas</h2>
+
+        <p>
+          Algunos datos relacionados con las partidas pueden almacenarse para
+          permitir funciones como puntuaciones, salas multijugador y
+          sincronización entre jugadores.
+        </p>
+
+
+        <h2>4. Servicios externos</h2>
+
+        <p>
+          Desafío Mental puede utilizar servicios tecnológicos externos para
+          determinadas funciones, como almacenamiento de datos, conexión
+          multijugador o funcionamiento de la aplicación.
+        </p>
+
+
+        <h2>5. Protección de la información</h2>
+
+        <p>
+          Se busca aplicar medidas razonables para proteger la información
+          utilizada por el juego y reducir el riesgo de acceso no autorizado.
+        </p>
+
+
+        <h2>6. Información que no debes proporcionar</h2>
+
+        <p>
+          No debes introducir contraseñas, números de tarjetas, documentos de
+          identidad, información bancaria u otros datos privados en campos
+          destinados únicamente al nombre del jugador.
+        </p>
+
+
+        <h2>7. Menores de edad</h2>
+
+        <p>
+          Los menores deben utilizar el juego de acuerdo con las reglas y
+          requisitos aplicables en su país y, cuando corresponda, con la
+          supervisión de sus padres o responsables.
+        </p>
+
+
+        <h2>8. Actualizaciones</h2>
+
+        <p>
+          Esta política puede actualizarse cuando se incorporen nuevas
+          funciones o cuando cambien los servicios utilizados por Desafío
+          Mental.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       SEGURIDAD
+  ========================== -->
+
+  <section id="seguridadScreen" class="screen legal-page">
+
+    <div class="legal-container">
+
+      <button
+        class="top-back"
+        onclick="openLegalScreen('homeScreen')"
+      >
+        ← Volver
+      </button>
+
+      <div class="legal-header">
+
+        <span class="legal-label">
+          SEGURIDAD
+        </span>
+
+        <h1>
+          Seguridad
+        </h1>
+
+        <p>
+          Recomendaciones para utilizar Desafío Mental de forma segura
+        </p>
+
+      </div>
+
+      <div class="legal-content">
+
+        <h2>1. Protección de la cuenta</h2>
+
+        <p>
+          No compartas información privada, contraseñas ni códigos de acceso
+          con otras personas. Utiliza únicamente la información necesaria
+          para jugar.
+        </p>
+
+
+        <h2>2. Seguridad en el multijugador</h2>
+
+        <p>
+          Cuando participes en partidas multijugador, evita compartir datos
+          personales con otros jugadores.
+        </p>
+
+
+        <h2>3. Nombres apropiados</h2>
+
+        <p>
+          Utiliza nombres respetuosos. No utilices información privada,
+          contenido ofensivo ni nombres destinados a hacerse pasar por otra
+          persona.
+        </p>
+
+
+        <h2>4. Comportamiento</h2>
+
+        <p>
+          No utilices Desafío Mental para acosar, amenazar, engañar,
+          perjudicar o molestar intencionalmente a otros jugadores.
+        </p>
+
+
+        <h2>5. Seguridad técnica</h2>
+
+        <p>
+          Desafío Mental puede depender de servicios tecnológicos externos.
+          Estos servicios pueden presentar interrupciones, errores o
+          actualizaciones fuera del control directo del proyecto.
+        </p>
+
+
+        <h2>6. Actividad sospechosa</h2>
+
+        <p>
+          No intentes acceder sin autorización a bases de datos, sistemas,
+          cuentas o funciones internas del juego.
+        </p>
+
+
+        <h2>7. Compras</h2>
+
+        <p>
+          Cuando las compras reales estén habilitadas, utiliza únicamente
+          métodos de pago oficiales proporcionados por el sistema de pago
+          correspondiente. Nunca compartas los datos de tu tarjeta dentro
+          del chat o del campo de nombre del juego.
+        </p>
+
+
+        <h2>8. Reportes</h2>
+
+        <p>
+          Si detectas un comportamiento inapropiado, un problema de seguridad
+          o una situación que pueda afectar a otros jugadores, puedes
+          comunicarte con el responsable del proyecto.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       CONTACTO
+  ========================== -->
+
+  <section id="contactoScreen" class="screen legal-page">
+
+    <div class="legal-container">
+
+      <button
+        class="top-back"
+        onclick="openLegalScreen('homeScreen')"
+      >
+        ← Volver
+      </button>
+
+      <div class="legal-header">
+
+        <span class="legal-label">
+          CONTACTO
+        </span>
+
+        <h1>
+          Contacto
+        </h1>
+
+        <p>
+          Información del proyecto
+        </p>
+
+      </div>
+
+      <div class="legal-content">
+
+        <h2>Desafío Mental</h2>
+
+        <p>
+          Desafío Mental es un proyecto de preguntas y respuestas creado para
+          ofrecer una experiencia de entretenimiento, aprendizaje y
+          competencia entre jugadores.
+        </p>
+
+
+        <h2>Responsable del proyecto</h2>
+
+        <p>
+          Duvan Felipe Riascos Manyoma
+        </p>
+
+
+        <h2>Consultas</h2>
+
+        <p>
+          Para consultas relacionadas con el funcionamiento del juego,
+          términos, privacidad, seguridad o posibles problemas, puedes
+          utilizar los medios de contacto oficiales que se habiliten para
+          el proyecto.
+        </p>
+
+
+        <h2>Actualizaciones</h2>
+
+        <p>
+          La información de contacto y las funciones de Desafío Mental pueden
+          actualizarse conforme avance el proyecto.
+        </p>
+
+      </div>
+
     </div>
 
   </section>
@@ -241,73 +604,49 @@
 
     <div class="category-grid">
 
-      <button
-        class="category-card"
-        onclick="selectCategory('general')"
-      >
+      <button class="category-card" onclick="selectCategory('general')">
         <span>🌎</span>
         <strong>Cultura General</strong>
         <small>Conocimientos</small>
       </button>
 
-      <button
-        class="category-card"
-        onclick="selectCategory('colombia')"
-      >
+      <button class="category-card" onclick="selectCategory('colombia')">
         <span>🇨🇴</span>
         <strong>Colombia</strong>
         <small>Tu país</small>
       </button>
 
-      <button
-        class="category-card"
-        onclick="selectCategory('science')"
-      >
+      <button class="category-card" onclick="selectCategory('science')">
         <span>🔬</span>
         <strong>Ciencia</strong>
         <small>Descubre</small>
       </button>
 
-      <button
-        class="category-card"
-        onclick="selectCategory('history')"
-      >
+      <button class="category-card" onclick="selectCategory('history')">
         <span>🏛️</span>
         <strong>Historia</strong>
         <small>El pasado</small>
       </button>
 
-      <button
-        class="category-card"
-        onclick="selectCategory('sports')"
-      >
+      <button class="category-card" onclick="selectCategory('sports')">
         <span>⚽</span>
         <strong>Deportes</strong>
         <small>Compite</small>
       </button>
 
-      <button
-        class="category-card"
-        onclick="selectCategory('technology')"
-      >
+      <button class="category-card" onclick="selectCategory('technology')">
         <span>💻</span>
         <strong>Tecnología</strong>
         <small>Innovación</small>
       </button>
 
-      <button
-        class="category-card"
-        onclick="selectCategory('geography')"
-      >
+      <button class="category-card" onclick="selectCategory('geography')">
         <span>🗺️</span>
         <strong>Geografía</strong>
         <small>El mundo</small>
       </button>
 
-      <button
-        class="category-card"
-        onclick="selectCategory('entertainment')"
-      >
+      <button class="category-card" onclick="selectCategory('entertainment')">
         <span>🎬</span>
         <strong>Entretenimiento</strong>
         <small>Películas y más</small>
@@ -717,7 +1056,7 @@
       </h2>
 
 
-      <!-- 💡 PISTA -->
+      <!-- PISTA -->
 
       <button
         id="usarPistaButton"
@@ -1005,7 +1344,7 @@
 
 
   <!-- =========================
-       💡 MIS PISTAS
+       MIS PISTAS
   ========================== -->
 
   <div
@@ -1064,7 +1403,7 @@
 
 
   <!-- =========================
-       🛒 TIENDA DE PISTAS
+       TIENDA DE PISTAS
   ========================== -->
 
   <div
@@ -1094,8 +1433,6 @@
       </p>
 
 
-      <!-- REGALO -->
-
       <div class="welcome-gift">
 
         <div class="gift-icon">
@@ -1118,8 +1455,6 @@
       </div>
 
 
-      <!-- SALDO -->
-
       <div class="hint-balance">
 
         💡 Mis pistas:
@@ -1130,8 +1465,6 @@
 
       </div>
 
-
-      <!-- PRODUCTO 1 -->
 
       <div class="hint-product">
 
@@ -1172,8 +1505,6 @@
 
       </div>
 
-
-      <!-- PRODUCTO 2 -->
 
       <div class="hint-product featured-product">
 
@@ -1218,8 +1549,6 @@
 
       </div>
 
-
-      <!-- PRODUCTO 3 -->
 
       <div class="hint-product">
 
@@ -1275,7 +1604,7 @@
 
 
   <!-- =========================
-       🎵 MÚSICA
+       MÚSICA
   ========================== -->
 
   <audio
@@ -1336,6 +1665,32 @@
 ========================== -->
 
 <script src="questions.js"></script>
+
+
+<!-- =========================
+     FUNCIONES DE PÁGINAS LEGALES
+========================== -->
+
+<script>
+
+  function openLegalScreen(id) {
+
+    document
+      .querySelectorAll(".screen")
+      .forEach(screen => {
+        screen.classList.remove("active");
+      });
+
+    const page = document.getElementById(id);
+
+    if (page) {
+      page.classList.add("active");
+      window.scrollTo(0, 0);
+    }
+
+  }
+
+</script>
 
 
 <!-- =========================
