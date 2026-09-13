@@ -2111,12 +2111,86 @@ function ocultarPistaActual() {
 
 
 // ==========================================
-// USAR PISTA
+// 💡 USAR PISTA - REVELA LA RESPUESTA
 // ==========================================
 
 function usarPista() {
 
     revisarPistaGratis();
+
+    if (dmPistas <= 0) {
+
+        alert(
+            "❌ No tienes pistas. Puedes conseguir una gratis cada 50 minutos o conseguir más desde la tienda."
+        );
+
+        return;
+    }
+
+    if (
+        currentQuestion >= gameQuestions.length
+    ) {
+        return;
+    }
+
+    const question =
+        gameQuestions[currentQuestion];
+
+    // Gastar una pista
+    dmPistas--;
+
+    guardarDatosPistas();
+
+    // Obtener la respuesta correcta
+    const respuestaCorrecta =
+        question.answers[question.correct];
+
+    // Mostrar la respuesta en el panel de pista
+    const pista =
+        document.getElementById("pistaActual");
+
+    if (pista) {
+
+        pista.innerHTML =
+            "💡 <strong>RESPUESTA CORRECTA:</strong><br>" +
+            "<span>" +
+            respuestaCorrecta +
+            "</span>";
+
+        pista.classList.remove("hidden");
+    }
+
+    // Marcar visualmente la respuesta correcta
+    const buttons =
+        document.querySelectorAll(".answer");
+
+    buttons.forEach(button => {
+
+        button.classList.remove(
+            "hint-correct"
+        );
+
+    });
+
+    if (buttons[question.correct]) {
+
+        buttons[question.correct]
+            .classList.add(
+                "hint-correct"
+            );
+
+    }
+
+    actualizarPistasEnJuego();
+
+    vibrate([50]);
+
+    console.log(
+        "💡 Pista utilizada. Respuesta correcta:",
+        respuestaCorrecta
+    );
+
+}
 
 
     if (
