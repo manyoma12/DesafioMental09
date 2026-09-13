@@ -1,0 +1,6 @@
+```txt
+User-agent: *
+Allow: /
+
+Sitemap: https://manyoma12.github.io/MenteMaestras/sitemap.xml
+```
