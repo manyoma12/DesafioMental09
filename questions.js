@@ -1,4 +1,4 @@
-const questions = [
+window.questionBank = [
 
     // =========================
     // 🧠 GENERAL — FÁCIL
