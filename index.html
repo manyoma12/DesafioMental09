@@ -13,968 +13,895 @@
 
 <body>
 
-  <div id="app">
+<div id="app">
 
-    <!-- =========================
-         PANTALLA DE INICIO
-    ========================== -->
+  <!-- =========================
+       PANTALLA DE INICIO
+  ========================== -->
 
-    <section id="homeScreen" class="screen active">
+  <section id="homeScreen" class="screen active">
 
-      <div class="hero">
+    <div class="hero">
 
-        <div class="game-icon">🧠</div>
+      <div class="game-icon">🧠</div>
 
-        <div class="online-badge">
-          <span></span>
-          ONLINE
-        </div>
-
-        <h1>Desafío Mental</h1>
-
-        <p class="creator">
-          🎓 Proyecto realizado por
-          <strong>Duvan Felipe Riascos Manyoma</strong>
-        </p>
-
-        <p>
-          ¿Tienes lo necesario para convertirte
-          en el campeón?
-        </p>
-
+      <div class="online-badge">
+        <span></span>
+        ONLINE
       </div>
 
-      <div class="home-buttons">
+      <h1>Desafío Mental</h1>
 
-        <button class="main-button" onclick="openPlayerScreen()">
-          <span>🎮</span>
-          Jugar
-        </button>
-
-        <button class="secondary-button" onclick="openMultiplayerScreen()">
-          <span>👥</span>
-          Multijugador
-        </button>
-
-        <button class="secondary-button" onclick="openHowToPlay()">
-          <span>📖</span>
-          Cómo jugar
-        </button>
-
-      </div>
-
-      <div class="home-footer">
-        <span>🏆 70 preguntas</span>
-        <span>⚡ Tiempo real</span>
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         NOMBRE DEL JUGADOR
-    ========================== -->
-
-    <section id="playerScreen" class="screen">
-
-      <button class="top-back" onclick="goHome()">
-        ← Volver
-      </button>
-
-      <div class="section-icon">
-        😎
-      </div>
-
-      <h2>¿Cómo te llamas?</h2>
-
-      <p class="description">
-        Escribe tu nombre para entrar al desafío.
+      <p class="creator">
+        🎓 Proyecto realizado por
+        <strong>Duvan Felipe Riascos Manyoma</strong>
       </p>
 
-      <div class="input-card">
-
-        <input
-          id="playerName"
-          type="text"
-          maxlength="15"
-          autocomplete="off"
-          placeholder="Tu nombre"
-        >
-
-      </div>
-
-      <button class="main-button" onclick="continueToCategories()">
-        Continuar →
-      </button>
-
-    </section>
-
-
-    <!-- =========================
-         CATEGORÍAS
-    ========================== -->
-
-    <section id="categoryScreen" class="screen">
-
-      <button class="top-back" onclick="openPlayerScreen()">
-        ← Volver
-      </button>
-
-      <h2>Elige una categoría</h2>
-
-      <p class="description">
-        Escoge el tema de tu desafío.
+      <p>
+        ¿Tienes lo necesario para convertirte
+        en el campeón?
       </p>
 
-      <div class="category-grid">
+    </div>
 
-        <button
-          class="category-card"
-          onclick="selectCategory('general')"
-        >
-          <span>🌎</span>
-          <strong>Cultura General</strong>
-          <small>Conocimientos</small>
-        </button>
+    <div class="home-buttons">
 
-        <button
-          class="category-card"
-          onclick="selectCategory('colombia')"
-        >
-          <span>🇨🇴</span>
-          <strong>Colombia</strong>
-          <small>Tu país</small>
-        </button>
-
-        <button
-          class="category-card"
-          onclick="selectCategory('science')"
-        >
-          <span>🔬</span>
-          <strong>Ciencia</strong>
-          <small>Descubre</small>
-        </button>
-
-        <button
-          class="category-card"
-          onclick="selectCategory('history')"
-        >
-          <span>🏛️</span>
-          <strong>Historia</strong>
-          <small>El pasado</small>
-        </button>
-
-        <button
-          class="category-card"
-          onclick="selectCategory('sports')"
-        >
-          <span>⚽</span>
-          <strong>Deportes</strong>
-          <small>Compite</small>
-        </button>
-
-        <button
-          class="category-card"
-          onclick="selectCategory('technology')"
-        >
-          <span>💻</span>
-          <strong>Tecnología</strong>
-          <small>Innovación</small>
-        </button>
-
-        <button
-          class="category-card"
-          onclick="selectCategory('geography')"
-        >
-          <span>🗺️</span>
-          <strong>Geografía</strong>
-          <small>El mundo</small>
-        </button>
-
-        <button
-          class="category-card"
-          onclick="selectCategory('entertainment')"
-        >
-          <span>🎬</span>
-          <strong>Entretenimiento</strong>
-          <small>Películas y más</small>
-        </button>
-
-        <button
-          class="category-card mixed-card"
-          onclick="selectCategory('mixed')"
-        >
-          <span>🎲</span>
-          <strong>Desafío Mixto</strong>
-          <small>Todo combinado</small>
-        </button>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         CANTIDAD DE PREGUNTAS
-    ========================== -->
-
-    <section id="amountScreen" class="screen">
-
-      <button class="top-back" onclick="openCategoryScreen()">
-        ← Volver
+      <button class="main-button" onclick="openPlayerScreen()">
+        <span>🎮</span>
+        Jugar
       </button>
 
-      <div class="section-icon">
-        🧠
-      </div>
-
-      <h2>¿Cuántas preguntas?</h2>
-
-      <p class="description">
-        Elige la duración de tu partida.
-      </p>
-
-      <div class="amount-grid">
-
-        <button onclick="selectAmount(10)">
-          <strong>10</strong>
-          <span>Rápida</span>
-        </button>
-
-        <button onclick="selectAmount(20)">
-          <strong>20</strong>
-          <span>Corta</span>
-        </button>
-
-        <button onclick="selectAmount(30)">
-          <strong>30</strong>
-          <span>Media</span>
-        </button>
-
-        <button onclick="selectAmount(40)">
-          <strong>40</strong>
-          <span>Larga</span>
-        </button>
-
-        <button onclick="selectAmount(50)">
-          <strong>50</strong>
-          <span>Experta</span>
-        </button>
-
-        <button class="ultimate" onclick="selectAmount(70)">
-          <strong>70</strong>
-          <span>🔥 Completa</span>
-        </button>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         DIFICULTAD
-    ========================== -->
-
-    <section id="difficultyScreen" class="screen">
-
-      <button class="top-back" onclick="openAmountScreen()">
-        ← Volver
+      <button class="secondary-button" onclick="openMultiplayerScreen()">
+        <span>👥</span>
+        Multijugador
       </button>
 
-      <div class="section-icon">
-        🎯
-      </div>
+      <!-- 💡 NUEVO BOTÓN -->
+      <button class="secondary-button" onclick="abrirPistas()">
+        <span>💡</span>
+        Pistas
+      </button>
 
-      <h2>Elige la dificultad</h2>
+      <button class="secondary-button" onclick="openHowToPlay()">
+        <span>📖</span>
+        Cómo jugar
+      </button>
 
-      <p class="description">
-        ¿Qué tan difícil quieres el desafío?
-      </p>
+    </div>
 
-      <div class="difficulty-grid">
+    <div class="home-footer">
+      <span>🏆 70 preguntas</span>
+      <span>⚡ Tiempo real</span>
+    </div>
 
-        <button
-          class="difficulty-card easy"
-          onclick="selectDifficulty('easy')"
-        >
-          <span>🟢</span>
+  </section>
 
-          <strong>Fácil</strong>
+
+  <!-- =========================
+       NOMBRE DEL JUGADOR
+  ========================== -->
+
+  <section id="playerScreen" class="screen">
+
+    <button class="top-back" onclick="goHome()">
+      ← Volver
+    </button>
+
+    <div class="section-icon">
+      😎
+    </div>
+
+    <h2>¿Cómo te llamas?</h2>
+
+    <p class="description">
+      Escribe tu nombre para entrar al desafío.
+    </p>
+
+    <div class="input-card">
+
+      <input
+        id="playerName"
+        type="text"
+        maxlength="15"
+        autocomplete="off"
+        placeholder="Tu nombre"
+      >
+
+    </div>
+
+    <button class="main-button" onclick="continueToCategories()">
+      Continuar →
+    </button>
+
+  </section>
+
+
+  <!-- =========================
+       CATEGORÍAS
+  ========================== -->
+
+  <section id="categoryScreen" class="screen">
+
+    <button class="top-back" onclick="openPlayerScreen()">
+      ← Volver
+    </button>
+
+    <h2>Elige una categoría</h2>
+
+    <p class="description">
+      Escoge el tema de tu desafío.
+    </p>
+
+    <div class="category-grid">
+
+      <button class="category-card" onclick="selectCategory('general')">
+        <span>🌎</span>
+        <strong>Cultura General</strong>
+        <small>Conocimientos</small>
+      </button>
+
+      <button class="category-card" onclick="selectCategory('colombia')">
+        <span>🇨🇴</span>
+        <strong>Colombia</strong>
+        <small>Tu país</small>
+      </button>
+
+      <button class="category-card" onclick="selectCategory('science')">
+        <span>🔬</span>
+        <strong>Ciencia</strong>
+        <small>Descubre</small>
+      </button>
+
+      <button class="category-card" onclick="selectCategory('history')">
+        <span>🏛️</span>
+        <strong>Historia</strong>
+        <small>El pasado</small>
+      </button>
+
+      <button class="category-card" onclick="selectCategory('sports')">
+        <span>⚽</span>
+        <strong>Deportes</strong>
+        <small>Compite</small>
+      </button>
+
+      <button class="category-card" onclick="selectCategory('technology')">
+        <span>💻</span>
+        <strong>Tecnología</strong>
+        <small>Innovación</small>
+      </button>
+
+      <button class="category-card" onclick="selectCategory('geography')">
+        <span>🗺️</span>
+        <strong>Geografía</strong>
+        <small>El mundo</small>
+      </button>
+
+      <button class="category-card" onclick="selectCategory('entertainment')">
+        <span>🎬</span>
+        <strong>Entretenimiento</strong>
+        <small>Películas y más</small>
+      </button>
+
+      <button class="category-card mixed-card" onclick="selectCategory('mixed')">
+        <span>🎲</span>
+        <strong>Desafío Mixto</strong>
+        <small>Todo combinado</small>
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       CANTIDAD DE PREGUNTAS
+  ========================== -->
+
+  <section id="amountScreen" class="screen">
+
+    <button class="top-back" onclick="openCategoryScreen()">
+      ← Volver
+    </button>
+
+    <div class="section-icon">
+      🧠
+    </div>
+
+    <h2>¿Cuántas preguntas?</h2>
+
+    <p class="description">
+      Elige la duración de tu partida.
+    </p>
+
+    <div class="amount-grid">
+
+      <button onclick="selectAmount(10)">
+        <strong>10</strong>
+        <span>Rápida</span>
+      </button>
+
+      <button onclick="selectAmount(20)">
+        <strong>20</strong>
+        <span>Corta</span>
+      </button>
+
+      <button onclick="selectAmount(30)">
+        <strong>30</strong>
+        <span>Media</span>
+      </button>
+
+      <button onclick="selectAmount(40)">
+        <strong>40</strong>
+        <span>Larga</span>
+      </button>
+
+      <button onclick="selectAmount(50)">
+        <strong>50</strong>
+        <span>Experta</span>
+      </button>
+
+      <button class="ultimate" onclick="selectAmount(70)">
+        <strong>70</strong>
+        <span>🔥 Completa</span>
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       DIFICULTAD
+  ========================== -->
+
+  <section id="difficultyScreen" class="screen">
+
+    <button class="top-back" onclick="openAmountScreen()">
+      ← Volver
+    </button>
+
+    <div class="section-icon">
+      🎯
+    </div>
+
+    <h2>Elige la dificultad</h2>
+
+    <p class="description">
+      ¿Qué tan difícil quieres el desafío?
+    </p>
+
+    <div class="difficulty-grid">
+
+      <button class="difficulty-card easy" onclick="selectDifficulty('easy')">
+        <span>🟢</span>
+        <strong>Fácil</strong>
+        <small>⏱️ 50 segundos</small>
+        <em>Preguntas fáciles</em>
+      </button>
+
+      <button class="difficulty-card medium" onclick="selectDifficulty('medium')">
+        <span>🟡</span>
+        <strong>Medio</strong>
+        <small>⏱️ 35 segundos</small>
+        <em>Preguntas medias</em>
+      </button>
+
+      <button class="difficulty-card hard" onclick="selectDifficulty('hard')">
+        <span>🔴</span>
+        <strong>Difícil</strong>
+        <small>⏱️ 20 segundos</small>
+        <em>Preguntas difíciles</em>
+      </button>
+
+      <button class="difficulty-card god" onclick="selectDifficulty('god')">
+        <span>☠️</span>
+        <strong>Dios</strong>
+        <small>⏱️ 15 segundos</small>
+        <em>Preguntas súper difíciles</em>
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       MULTIJUGADOR
+  ========================== -->
+
+  <section id="multiplayerScreen" class="screen">
+
+    <button class="top-back" onclick="goHome()">
+      ← Volver
+    </button>
+
+    <div class="section-icon">
+      👥
+    </div>
+
+    <h2>Multijugador</h2>
+
+    <p class="description">
+      Compite contra otra persona en tiempo real.
+    </p>
+
+    <div class="online-panel">
+
+      <div class="live-dot"></div>
+
+      <strong>Modo online</strong>
+
+      <span>
+        Conexión en tiempo real
+      </span>
+
+    </div>
+
+    <button class="main-button" onclick="createRoom()">
+      🏠 Crear sala
+    </button>
+
+    <button class="secondary-button" onclick="showJoinRoom()">
+      🔑 Unirse a una sala
+    </button>
+
+    <div id="joinRoomBox" class="join-room hidden">
+
+      <input
+        id="roomCode"
+        type="text"
+        maxlength="6"
+        placeholder="Código de sala"
+      >
+
+      <button class="main-button" onclick="joinRoom()">
+        Entrar a la sala
+      </button>
+
+    </div>
+
+    <div id="roomInfo"></div>
+
+  </section>
+
+
+  <!-- =========================
+       SALA MULTIJUGADOR
+  ========================== -->
+
+  <section id="roomScreen" class="screen">
+
+    <div class="section-icon">
+      🎮
+    </div>
+
+    <h2>Sala de juego</h2>
+
+    <p class="description">
+      Comparte este código con tu amigo.
+    </p>
+
+    <div class="room-code-card">
+
+      <small>CÓDIGO DE SALA</small>
+
+      <strong id="displayRoomCode">
+        ------
+      </strong>
+
+      <button class="copy-button" onclick="copyRoomCode()">
+        📋 Copiar código
+      </button>
+
+    </div>
+
+    <div class="players-card">
+
+      <div class="player-slot">
+
+        <span>😎</span>
+
+        <div>
+          <strong id="hostName">
+            Tú
+          </strong>
 
           <small>
-            ⏱️ 50 segundos
+            Anfitrión
           </small>
-
-          <em>
-            Preguntas fáciles
-          </em>
-
-        </button>
-
-
-        <button
-          class="difficulty-card medium"
-          onclick="selectDifficulty('medium')"
-        >
-          <span>🟡</span>
-
-          <strong>Medio</strong>
-
-          <small>
-            ⏱️ 35 segundos
-          </small>
-
-          <em>
-            Preguntas medias
-          </em>
-
-        </button>
-
-
-        <button
-          class="difficulty-card hard"
-          onclick="selectDifficulty('hard')"
-        >
-          <span>🔴</span>
-
-          <strong>Difícil</strong>
-
-          <small>
-            ⏱️ 20 segundos
-          </small>
-
-          <em>
-            Preguntas difíciles
-          </em>
-
-        </button>
-
-
-        <button
-          class="difficulty-card god"
-          onclick="selectDifficulty('god')"
-        >
-          <span>☠️</span>
-
-          <strong>Dios</strong>
-
-          <small>
-            ⏱️ 15 segundos
-          </small>
-
-          <em>
-            Preguntas súper difíciles
-          </em>
-
-        </button>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         MULTIJUGADOR
-    ========================== -->
-
-    <section id="multiplayerScreen" class="screen">
-
-      <button class="top-back" onclick="goHome()">
-        ← Volver
-      </button>
-
-      <div class="section-icon">
-        👥
-      </div>
-
-      <h2>Multijugador</h2>
-
-      <p class="description">
-        Compite contra otra persona en tiempo real.
-      </p>
-
-      <div class="online-panel">
-
-        <div class="live-dot"></div>
-
-        <strong>Modo online</strong>
-
-        <span>
-          Conexión en tiempo real
-        </span>
-
-      </div>
-
-      <button class="main-button" onclick="createRoom()">
-        🏠 Crear sala
-      </button>
-
-      <button
-        class="secondary-button"
-        onclick="showJoinRoom()"
-      >
-        🔑 Unirse a una sala
-      </button>
-
-      <div id="joinRoomBox" class="join-room hidden">
-
-        <input
-          id="roomCode"
-          type="text"
-          maxlength="6"
-          placeholder="Código de sala"
-        >
-
-        <button
-          class="main-button"
-          onclick="joinRoom()"
-        >
-          Entrar a la sala
-        </button>
-
-      </div>
-
-      <div id="roomInfo"></div>
-
-    </section>
-
-
-    <!-- =========================
-         SALA MULTIJUGADOR
-    ========================== -->
-
-    <section id="roomScreen" class="screen">
-
-      <div class="section-icon">
-        🎮
-      </div>
-
-      <h2>Sala de juego</h2>
-
-      <p class="description">
-        Comparte este código con tu amigo.
-      </p>
-
-      <div class="room-code-card">
-
-        <small>CÓDIGO DE SALA</small>
-
-        <strong id="displayRoomCode">
-          ------
-        </strong>
-
-        <button
-          class="copy-button"
-          onclick="copyRoomCode()"
-        >
-          📋 Copiar código
-        </button>
-
-      </div>
-
-      <div class="players-card">
-
-        <div class="player-slot">
-
-          <span>😎</span>
-
-          <div>
-            <strong id="hostName">
-              Tú
-            </strong>
-
-            <small>
-              Anfitrión
-            </small>
-          </div>
-
-          <b>✓</b>
-
         </div>
 
-        <div class="player-slot waiting">
-
-          <span>👤</span>
-
-          <div>
-            <strong id="guestName">
-              Esperando...
-            </strong>
-
-            <small>
-              Jugador 2
-            </small>
-          </div>
-
-        </div>
+        <b>✓</b>
 
       </div>
 
-      <p id="waitingText" class="waiting-text">
-        ⏳ Esperando al otro jugador...
-      </p>
-
-      <!-- BOTÓN PARA EL ANFITRIÓN -->
-      <button
-        id="startMultiplayerButton"
-        class="main-button hidden"
-        onclick="startMultiplayerGame()"
-      >
-        🎮 Iniciar partida
-      </button>
-
-      <button
-        class="danger-button"
-        onclick="leaveRoom()"
-      >
-        🚪 Salir de la sala
-      </button>
-
-    </section>
-
-
-    <!-- =========================
-         JUEGO
-    ========================== -->
-
-    <section id="gameScreen" class="screen game-screen">
-
-      <header class="game-header">
-
-        <button
-          class="game-menu-button"
-          onclick="openGameMenu()"
-        >
-          ☰
-        </button>
-
-        <div class="progress-container">
-
-          <div class="progress-text">
-
-            <span id="questionCounter">
-              Pregunta 1 de 10
-            </span>
-
-            <span id="timer">
-              ⏱️ 15
-            </span>
-
-          </div>
-
-          <div class="progress-bar">
-
-            <div
-              id="progressFill"
-              class="progress-fill"
-            ></div>
-
-          </div>
-
-        </div>
-
-        <div class="live-score">
-          ⭐ <span id="gameScore">0</span>
-        </div>
-
-      </header>
-
-
-      <div
-        class="opponent-bar hidden"
-        id="opponentBar"
-      >
+      <div class="player-slot waiting">
 
         <span>👤</span>
 
-        <strong id="opponentName">
-          Rival
-        </strong>
+        <div>
+          <strong id="guestName">
+            Esperando...
+          </strong>
 
-        <div class="opponent-progress">
-          <div id="opponentProgress"></div>
+          <small>
+            Jugador 2
+          </small>
         </div>
-
-        <b id="opponentScore">
-          0
-        </b>
 
       </div>
 
+    </div>
 
-      <main class="question-area">
+    <p id="waitingText" class="waiting-text">
+      ⏳ Esperando al otro jugador...
+    </p>
 
-        <div
-          class="category-label"
-          id="currentCategory"
-        >
-          CULTURA GENERAL
-        </div>
+    <button
+      id="startMultiplayerButton"
+      class="main-button hidden"
+      onclick="startMultiplayerGame()"
+    >
+      🎮 Iniciar partida
+    </button>
 
-        <h2 id="questionText">
-          Cargando pregunta...
-        </h2>
+    <button class="danger-button" onclick="leaveRoom()">
+      🚪 Salir de la sala
+    </button>
 
-        <div
-          id="answersContainer"
-          class="answers-container"
-        >
+  </section>
 
-          <button
-            class="answer"
-            onclick="selectAnswer(0)"
-          >
-            <span>A</span>
 
-            <strong id="answer0">
-              Respuesta
-            </strong>
+  <!-- =========================
+       JUEGO
+  ========================== -->
 
-          </button>
+  <section id="gameScreen" class="screen game-screen">
 
-          <button
-            class="answer"
-            onclick="selectAnswer(1)"
-          >
-            <span>B</span>
+    <header class="game-header">
 
-            <strong id="answer1">
-              Respuesta
-            </strong>
+      <button class="game-menu-button" onclick="openGameMenu()">
+        ☰
+      </button>
 
-          </button>
+      <div class="progress-container">
 
-          <button
-            class="answer"
-            onclick="selectAnswer(2)"
-          >
-            <span>C</span>
+        <div class="progress-text">
 
-            <strong id="answer2">
-              Respuesta
-            </strong>
+          <span id="questionCounter">
+            Pregunta 1 de 10
+          </span>
 
-          </button>
-
-          <button
-            class="answer"
-            onclick="selectAnswer(3)"
-          >
-            <span>D</span>
-
-            <strong id="answer3">
-              Respuesta
-            </strong>
-
-          </button>
+          <span id="timer">
+            ⏱️ 15
+          </span>
 
         </div>
 
-      </main>
+        <div class="progress-bar">
 
-    </section>
+          <div
+            id="progressFill"
+            class="progress-fill"
+          ></div>
 
+        </div>
 
-    <!-- =========================
-         RESULTADO
-    ========================== -->
-
-    <section id="resultScreen" class="screen">
-
-      <div class="result-icon">
-        🏆
       </div>
 
-      <p class="result-label">
-        RESULTADO FINAL
-      </p>
+      <div class="live-score">
+        ⭐ <span id="gameScore">0</span>
+      </div>
 
-      <h2 id="resultTitle">
-        ¡Desafío terminado!
+    </header>
+
+
+    <div class="opponent-bar hidden" id="opponentBar">
+
+      <span>👤</span>
+
+      <strong id="opponentName">
+        Rival
+      </strong>
+
+      <div class="opponent-progress">
+        <div id="opponentProgress"></div>
+      </div>
+
+      <b id="opponentScore">
+        0
+      </b>
+
+    </div>
+
+
+    <main class="question-area">
+
+      <div
+        class="category-label"
+        id="currentCategory"
+      >
+        CULTURA GENERAL
+      </div>
+
+      <h2 id="questionText">
+        Cargando pregunta...
       </h2>
 
-      <div class="final-score">
-
-        <span id="finalScore">
-          0
-        </span>
-
-        <small>
-          puntos
-        </small>
-
-      </div>
-
-
-      <div class="best-score">
-
-        🏆 Récord personal:
-
-        <strong id="bestScore">
-          0
-        </strong>
-
-      </div>
-
-
-      <div class="best-streak">
-
-        🔥 Mejor racha:
-
-        <strong id="bestStreak">
-          0
-        </strong>
-
-      </div>
-
-
-      <div class="result-stats">
-
-        <div>
-
-          <strong id="correctAnswers">
-            0
-          </strong>
-
-          <span>
-            Correctas
-          </span>
-
-        </div>
-
-        <div>
-
-          <strong id="wrongAnswers">
-            0
-          </strong>
-
-          <span>
-            Incorrectas
-          </span>
-
-        </div>
-
-        <div>
-
-          <strong id="accuracy">
-            0%
-          </strong>
-
-          <span>
-            Precisión
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <p
-        id="resultMessage"
-        class="result-message"
-      >
-        ¡Buen trabajo!
-      </p>
-
-
+      <!-- 💡 BOTÓN DE PISTA -->
       <button
-        class="main-button"
-        onclick="restartGame()"
+        id="usarPistaButton"
+        class="hint-button"
+        onclick="usarPista()"
       >
-        🔄 Jugar otra vez
+        💡 Usar pista
+        <span id="pistasEnJuego">0</span>
       </button>
 
-      <button
-        class="secondary-button"
-        onclick="goHome()"
+      <!-- AQUÍ APARECERÁ LA PISTA -->
+      <div
+        id="pistaActual"
+        class="pista-actual hidden"
+      ></div>
+
+      <div
+        id="answersContainer"
+        class="answers-container"
       >
-        🏠 Menú principal
-      </button>
-
-    </section>
-
-
-    <!-- =========================
-         MENÚ DEL JUEGO
-    ========================== -->
-
-    <div
-      id="gameMenu"
-      class="modal hidden"
-    >
-
-      <div class="modal-card">
 
         <button
-          class="modal-close"
-          onclick="closeGameMenu()"
+          class="answer"
+          onclick="selectAnswer(0)"
         >
-          ✕
-        </button>
+          <span>A</span>
 
-        <h2>⚙️ Opciones</h2>
+          <strong id="answer0">
+            Respuesta
+          </strong>
 
-        <button
-          class="setting-button"
-          onclick="toggleMusic()"
-        >
-          🎵 <span>Música</span>
-          <b id="musicStatus">ON</b>
         </button>
 
         <button
-          class="setting-button"
-          onclick="toggleVibration()"
+          class="answer"
+          onclick="selectAnswer(1)"
         >
-          📳 <span>Vibración</span>
-          <b id="vibrationStatus">ON</b>
+          <span>B</span>
+
+          <strong id="answer1">
+            Respuesta
+          </strong>
+
         </button>
 
         <button
-          class="setting-button"
-          onclick="restartGame()"
+          class="answer"
+          onclick="selectAnswer(2)"
         >
-          🔄 <span>Reiniciar</span>
+          <span>C</span>
+
+          <strong id="answer2">
+            Respuesta
+          </strong>
+
         </button>
 
         <button
-          class="setting-button danger-setting"
-          onclick="exitGame()"
+          class="answer"
+          onclick="selectAnswer(3)"
         >
-          🚪 <span>Salir del juego</span>
+          <span>D</span>
+
+          <strong id="answer3">
+            Respuesta
+          </strong>
+
         </button>
 
+      </div>
+
+    </main>
+
+  </section>
+
+
+  <!-- =========================
+       RESULTADO
+  ========================== -->
+
+  <section id="resultScreen" class="screen">
+
+    <div class="result-icon">
+      🏆
+    </div>
+
+    <p class="result-label">
+      RESULTADO FINAL
+    </p>
+
+    <h2 id="resultTitle">
+      ¡Desafío terminado!
+    </h2>
+
+    <div class="final-score">
+
+      <span id="finalScore">
+        0
+      </span>
+
+      <small>
+        puntos
+      </small>
+
+    </div>
+
+    <div class="best-score">
+      🏆 Récord personal:
+      <strong id="bestScore">0</strong>
+    </div>
+
+    <div class="best-streak">
+      🔥 Mejor racha:
+      <strong id="bestStreak">0</strong>
+    </div>
+
+    <div class="result-stats">
+
+      <div>
+        <strong id="correctAnswers">0</strong>
+        <span>Correctas</span>
+      </div>
+
+      <div>
+        <strong id="wrongAnswers">0</strong>
+        <span>Incorrectas</span>
+      </div>
+
+      <div>
+        <strong id="accuracy">0%</strong>
+        <span>Precisión</span>
       </div>
 
     </div>
 
+    <p id="resultMessage" class="result-message">
+      ¡Buen trabajo!
+    </p>
 
-    <!-- =========================
-         CÓMO JUGAR
-    ========================== -->
+    <button class="main-button" onclick="restartGame()">
+      🔄 Jugar otra vez
+    </button>
 
-    <div
-      id="howToPlay"
-      class="modal hidden"
-    >
+    <button class="secondary-button" onclick="goHome()">
+      🏠 Menú principal
+    </button>
 
-      <div class="modal-card">
+  </section>
 
-        <button
-          class="modal-close"
-          onclick="closeHowToPlay()"
-        >
-          ✕
-        </button>
 
-        <div class="modal-icon">
-          🎮
-        </div>
+  <!-- =========================
+       MENÚ DEL JUEGO
+  ========================== -->
 
-        <h2>Cómo jugar</h2>
+  <div id="gameMenu" class="modal hidden">
 
-        <div class="instructions">
+    <div class="modal-card">
 
-          <p>
-            🧠 Responde las preguntas correctamente.
-          </p>
+      <button class="modal-close" onclick="closeGameMenu()">
+        ✕
+      </button>
 
-          <p>
-            ⏱️ Cada pregunta tiene un tiempo limitado.
-          </p>
+      <h2>⚙️ Opciones</h2>
 
-          <p>
-            ⭐ Las respuestas correctas te dan puntos.
-          </p>
+      <button class="setting-button" onclick="toggleMusic()">
+        🎵 <span>Música</span>
+        <b id="musicStatus">ON</b>
+      </button>
 
-          <p>
-            👥 En multijugador competirás en tiempo real.
-          </p>
+      <button class="setting-button" onclick="toggleVibration()">
+        📳 <span>Vibración</span>
+        <b id="vibrationStatus">ON</b>
+      </button>
 
-          <p>
-            🏆 ¡Consigue la mayor puntuación!
-          </p>
+      <button class="setting-button" onclick="restartGame()">
+        🔄 <span>Reiniciar</span>
+      </button>
 
-        </div>
-
-        <button
-          class="main-button"
-          onclick="closeHowToPlay()"
-        >
-          ¡Entendido!
-        </button>
-
-      </div>
+      <button class="setting-button danger-setting" onclick="exitGame()">
+        🚪 <span>Salir del juego</span>
+      </button>
 
     </div>
-
-
-    <!-- =========================
-         MÚSICA
-    ========================== -->
-
-    <audio
-      id="backgroundMusic"
-      loop
-      preload="auto"
-    >
-      <source
-        src="music.mp3"
-        type="audio/mpeg"
-      >
-    </audio>
 
   </div>
 
 
   <!-- =========================
-       FIREBASE
+       CÓMO JUGAR
   ========================== -->
 
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+  <div id="howToPlay" class="modal hidden">
 
-  <script>
+    <div class="modal-card">
 
-    const firebaseConfig = {
+      <button class="modal-close" onclick="closeHowToPlay()">
+        ✕
+      </button>
 
-      apiKey: "AIzaSyDJPtNgmsYQVJIpRRvzlZx35ofuI2UokEc",
+      <div class="modal-icon">
+        🎮
+      </div>
 
-      authDomain:
-        "desafio-mentak.firebaseapp.com",
+      <h2>Cómo jugar</h2>
 
-      projectId:
-        "desafio-mentak",
+      <div class="instructions">
 
-      storageBucket:
-        "desafio-mentak.firebasestorage.app",
+        <p>
+          🧠 Responde las preguntas correctamente.
+        </p>
 
-      messagingSenderId:
-        "250003028982",
+        <p>
+          ⏱️ Cada pregunta tiene un tiempo limitado.
+        </p>
 
-      appId:
-        "1:250003028982:web:ae687b62cbb71e8022e5d7"
+        <p>
+          ⭐ Las respuestas correctas te dan puntos.
+        </p>
 
-    };
+        <p>
+          💡 Puedes usar pistas.
+        </p>
 
+        <p>
+          🕐 Consigue una pista gratis cada 50 minutos.
+        </p>
 
-    firebase.initializeApp(
-      firebaseConfig
-    );
+        <p>
+          🪙 También puedes comprar pistas con monedas.
+        </p>
 
+        <p>
+          👥 En multijugador competirás en tiempo real.
+        </p>
 
-    const db =
-      firebase.database();
+        <p>
+          🏆 ¡Consigue la mayor puntuación!
+        </p>
 
-  </script>
+      </div>
+
+      <button class="main-button" onclick="closeHowToPlay()">
+        ¡Entendido!
+      </button>
+
+    </div>
+
+  </div>
 
 
   <!-- =========================
-       JAVASCRIPT DEL JUEGO
+       💡 PANEL DE PISTAS
   ========================== -->
 
-  <script src="questions.js"></script>
-  <script src="script.js"></script>
+  <div id="panelPistas" class="modal hidden">
+
+    <div class="modal-card">
+
+      <button
+        class="modal-close"
+        onclick="cerrarPistas()"
+      >
+        ✕
+      </button>
+
+      <div class="modal-icon">
+        💡
+      </div>
+
+      <h2>Mis Pistas</h2>
+
+      <p>
+        Tienes
+        <strong id="cantidadPistas">0</strong>
+        pistas.
+      </p>
+
+      <div class="pistas-contador">
+
+        🕐 Próxima pista gratis
+
+        <strong id="contadorPistas">
+          50:00
+        </strong>
+
+      </div>
+
+      <button
+        class="main-button"
+        onclick="comprarPista()"
+      >
+        💡 Comprar 1 — 100 🪙
+      </button>
+
+      <button
+        class="secondary-button"
+        onclick="comprarCincoPistas()"
+      >
+        💡 Comprar 5 — 400 🪙
+      </button>
+
+      <p class="monedas-pistas">
+        🪙 Monedas:
+        <strong id="cantidadMonedas">500</strong>
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       MÚSICA
+  ========================== -->
+
+  <audio
+    id="backgroundMusic"
+    loop
+    preload="auto"
+  >
+    <source
+      src="music.mp3"
+      type="audio/mpeg"
+    >
+  </audio>
+
+</div>
+
+
+<!-- =========================
+     FIREBASE
+========================== -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+<script>
+
+const firebaseConfig = {
+
+  apiKey: "AIzaSyDJPtNgmsYQVJIpRRvzlZx35ofuI2UokEc",
+
+  authDomain:
+    "desafio-mentak.firebaseapp.com",
+
+  projectId:
+    "desafio-mentak",
+
+  storageBucket:
+    "desafio-mentak.firebasestorage.app",
+
+  messagingSenderId:
+    "250003028982",
+
+  appId:
+    "1:250003028982:web:ae687b62cbb71e8022e5d7"
+
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.database();
+
+</script>
+
+
+<!-- =========================
+     JAVASCRIPT DEL JUEGO
+========================== -->
+
+<script src="questions.js"></script>
+
+<script src="script.js"></script>
 
 </body>
-</html>
+</html>333333
