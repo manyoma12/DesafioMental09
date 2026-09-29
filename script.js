@@ -1,6 +1,6 @@
 // ==========================================
 // 🧠 DESAFÍO MENTAL
-// SCRIPT.JS - VERSIÓN NUEVA
+// SCRIPT.JS - VERSIÓN CORREGIDA
 // ==========================================
 
 let playerName = "";
@@ -40,6 +40,7 @@ function showScreen(screenId) {
 
     if (screen) {
         screen.classList.add("active");
+        window.scrollTo(0, 0);
     }
 }
 
@@ -61,6 +62,15 @@ function openPlayerScreen() {
     if (input) {
         input.focus();
     }
+}
+
+
+// ==========================================
+// CATÁLOGO
+// ==========================================
+
+function openCatalog() {
+    showScreen("categoryScreen");
 }
 
 
@@ -99,17 +109,36 @@ function selectCategory(category) {
 
     selectedCategory = category;
 
-    document.querySelectorAll(".category-btn").forEach(button => {
+    document.querySelectorAll(".category-card").forEach(button => {
         button.classList.remove("selected");
     });
 
-    const button = document.querySelector(
-        `[data-category="${category}"]`
-    );
+    const buttons = document.querySelectorAll(".category-card");
 
-    if (button) {
-        button.classList.add("selected");
-    }
+    buttons.forEach(button => {
+
+        const onclickText =
+            button.getAttribute("onclick");
+
+        if (
+            onclickText &&
+            onclickText.includes(`'${category}'`)
+        ) {
+            button.classList.add("selected");
+        }
+    });
+
+    // Pasar a cantidad de preguntas
+    showScreen("amountScreen");
+}
+
+
+// ==========================================
+// VOLVER A CATEGORÍAS
+// ==========================================
+
+function openCategoryScreen() {
+    showScreen("categoryScreen");
 }
 
 
@@ -121,17 +150,20 @@ function selectAmount(amount) {
 
     selectedAmount = Number(amount);
 
-    document.querySelectorAll(".amount-btn").forEach(button => {
+    document.querySelectorAll(".amount-grid button").forEach(button => {
         button.classList.remove("selected");
     });
 
-    const button = document.querySelector(
-        `[data-amount="${amount}"]`
-    );
+    showScreen("difficultyScreen");
+}
 
-    if (button) {
-        button.classList.add("selected");
-    }
+
+// ==========================================
+// VOLVER A CANTIDAD
+// ==========================================
+
+function openAmountScreen() {
+    showScreen("amountScreen");
 }
 
 
@@ -143,17 +175,27 @@ function selectDifficulty(difficulty) {
 
     selectedDifficulty = difficulty;
 
-    document.querySelectorAll(".difficulty-btn").forEach(button => {
+    document.querySelectorAll(".difficulty-card").forEach(button => {
         button.classList.remove("selected");
     });
 
-    const button = document.querySelector(
-        `[data-difficulty="${difficulty}"]`
-    );
+    const buttons =
+        document.querySelectorAll(".difficulty-card");
 
-    if (button) {
-        button.classList.add("selected");
-    }
+    buttons.forEach(button => {
+
+        const onclickText =
+            button.getAttribute("onclick");
+
+        if (
+            onclickText &&
+            onclickText.includes(`'${difficulty}'`)
+        ) {
+            button.classList.add("selected");
+        }
+    });
+
+    startGame();
 }
 
 
@@ -173,6 +215,8 @@ function startGame(amount) {
     wrongAnswers = 0;
     currentStreak = 0;
     answered = false;
+
+    updateScore();
 
     prepareQuestions();
 
@@ -235,7 +279,10 @@ function prepareQuestions() {
 
     gameQuestions = filtered.slice(
         0,
-        Math.min(selectedAmount, filtered.length)
+        Math.min(
+            selectedAmount,
+            filtered.length
+        )
     );
 }
 
@@ -253,7 +300,9 @@ function shuffleArray(array) {
     ) {
 
         const j =
-            Math.floor(Math.random() * (i + 1));
+            Math.floor(
+                Math.random() * (i + 1)
+            );
 
         [
             array[i],
@@ -290,6 +339,7 @@ function showQuestion() {
 
     const question =
         gameQuestions[currentQuestion];
+
 
     // CONTADOR
 
@@ -337,11 +387,29 @@ function showQuestion() {
     }
 
 
+    // CATEGORÍA ACTUAL
+
+    const categoryLabel =
+        document.getElementById(
+            "currentCategory"
+        );
+
+    if (categoryLabel) {
+
+        categoryLabel.textContent =
+            (
+                question.category ||
+                selectedCategory ||
+                "DESAFÍO"
+            ).toUpperCase();
+    }
+
+
     // RESPUESTAS
 
     const answerButtons =
         document.querySelectorAll(
-            ".answer-btn"
+            ".answer"
         );
 
     const answers =
@@ -363,7 +431,7 @@ function showQuestion() {
 
             const text =
                 button.querySelector(
-                    ".answer-text"
+                    "strong"
                 );
 
             if (text) {
@@ -380,6 +448,31 @@ function showQuestion() {
 
                 selectAnswer(index);
             };
+        }
+    );
+
+
+    // ACTUALIZAR LETRAS
+
+    const letters = [
+        "A",
+        "B",
+        "C",
+        "D"
+    ];
+
+    answerButtons.forEach(
+        (button, index) => {
+
+            const letter =
+                button.querySelector(
+                    "span"
+                );
+
+            if (letter) {
+                letter.textContent =
+                    letters[index];
+            }
         }
     );
 
@@ -450,11 +543,11 @@ function timeOut() {
         gameQuestions[currentQuestion];
 
     const correct =
-        question.answer;
+        Number(question.answer);
 
     const buttons =
         document.querySelectorAll(
-            ".answer-btn"
+            ".answer"
         );
 
     buttons.forEach(
@@ -503,7 +596,7 @@ function selectAnswer(index) {
 
     const buttons =
         document.querySelectorAll(
-            ".answer-btn"
+            ".answer"
         );
 
     buttons.forEach(
@@ -551,7 +644,9 @@ function selectAnswer(index) {
             );
         }
 
-        score += 100 + timeLeft * 5;
+        score +=
+            100 +
+            timeLeft * 5;
 
     } else {
 
@@ -563,8 +658,10 @@ function selectAnswer(index) {
 
     updateScore();
 
-    if (vibrationEnabled &&
-        navigator.vibrate) {
+    if (
+        vibrationEnabled &&
+        navigator.vibrate
+    ) {
 
         navigator.vibrate(
             index === correct
@@ -592,7 +689,7 @@ function updateScore() {
 
     const scoreElement =
         document.getElementById(
-            "score"
+            "gameScore"
         );
 
     if (scoreElement) {
@@ -634,6 +731,30 @@ function finishGame() {
     }
 
 
+    const bestScoreElement =
+        document.getElementById(
+            "bestScore"
+        );
+
+    if (bestScoreElement) {
+
+        bestScoreElement.textContent =
+            bestScore;
+    }
+
+
+    const bestStreakElement =
+        document.getElementById(
+            "bestStreak"
+        );
+
+    if (bestStreakElement) {
+
+        bestStreakElement.textContent =
+            bestStreak;
+    }
+
+
     const correctElement =
         document.getElementById(
             "correctAnswers"
@@ -655,6 +776,29 @@ function finishGame() {
 
         wrongElement.textContent =
             wrongAnswers;
+    }
+
+
+    const accuracyElement =
+        document.getElementById(
+            "accuracy"
+        );
+
+    if (accuracyElement) {
+
+        const total =
+            correctAnswers +
+            wrongAnswers;
+
+        const accuracy =
+            total > 0
+                ? Math.round(
+                    (correctAnswers / total) * 100
+                  )
+                : 0;
+
+        accuracyElement.textContent =
+            `${accuracy}%`;
     }
 
 
@@ -695,6 +839,22 @@ function openMultiplayerScreen() {
     showScreen(
         "multiplayerScreen"
     );
+}
+
+
+function showJoinRoom() {
+
+    const box =
+        document.getElementById(
+            "joinRoomBox"
+        );
+
+    if (box) {
+
+        box.classList.remove(
+            "hidden"
+        );
+    }
 }
 
 
@@ -741,7 +901,7 @@ function joinRoom() {
 
     const input =
         document.getElementById(
-            "joinRoomCode"
+            "roomCode"
         );
 
     if (!input) {
@@ -790,15 +950,91 @@ function leaveRoom() {
 }
 
 
+function copyRoomCode() {
+
+    const code =
+        document.getElementById(
+            "displayRoomCode"
+        );
+
+    if (!code) {
+        return;
+    }
+
+    navigator.clipboard
+        ?.writeText(code.textContent)
+        .then(() => {
+
+            alert(
+                "Código copiado."
+            );
+
+        })
+        .catch(() => {
+
+            alert(
+                "No se pudo copiar el código."
+            );
+
+        });
+}
+
+
+function startMultiplayerGame() {
+
+    alert(
+        "El modo multijugador está preparado para conectarse al sistema online."
+    );
+}
+
+
 // ==========================================
 // CÓMO JUGAR
 // ==========================================
 
 function openHowToPlay() {
 
-    showScreen(
-        "howToPlayScreen"
+    const modal =
+        document.getElementById(
+            "howToPlay"
+        );
+
+    if (modal) {
+
+        modal.classList.remove(
+            "hidden"
+        );
+
+        modal.classList.add(
+            "active"
+        );
+
+        return;
+    }
+
+    alert(
+        "Responde las preguntas correctamente antes de que termine el tiempo."
     );
+}
+
+
+function closeHowToPlay() {
+
+    const modal =
+        document.getElementById(
+            "howToPlay"
+        );
+
+    if (modal) {
+
+        modal.classList.add(
+            "hidden"
+        );
+
+        modal.classList.remove(
+            "active"
+        );
+    }
 }
 
 
@@ -815,6 +1051,19 @@ function toggleMusic() {
         document.getElementById(
             "backgroundMusic"
         );
+
+    const status =
+        document.getElementById(
+            "musicStatus"
+        );
+
+    if (status) {
+
+        status.textContent =
+            musicEnabled
+                ? "ON"
+                : "OFF";
+    }
 
     if (!music) {
         return;
@@ -842,6 +1091,19 @@ function toggleVibration() {
     vibrationEnabled =
         !vibrationEnabled;
 
+    const status =
+        document.getElementById(
+            "vibrationStatus"
+        );
+
+    if (status) {
+
+        status.textContent =
+            vibrationEnabled
+                ? "ON"
+                : "OFF";
+    }
+
     if (
         vibrationEnabled &&
         navigator.vibrate
@@ -865,6 +1127,10 @@ function openGameMenu() {
 
     if (menu) {
 
+        menu.classList.remove(
+            "hidden"
+        );
+
         menu.classList.add(
             "active"
         );
@@ -881,10 +1147,122 @@ function closeGameMenu() {
 
     if (menu) {
 
+        menu.classList.add(
+            "hidden"
+        );
+
         menu.classList.remove(
             "active"
         );
     }
+}
+
+
+function exitGame() {
+
+    closeGameMenu();
+
+    clearInterval(timer);
+
+    goHome();
+}
+
+
+// ==========================================
+// PISTAS
+// ==========================================
+
+function usarPista() {
+
+    const pistaActual =
+        document.getElementById(
+            "pistaActual"
+        );
+
+    if (pistaActual) {
+
+        pistaActual.classList.remove(
+            "hidden"
+        );
+
+        pistaActual.textContent =
+            "💡 Pista: analiza cuidadosamente las opciones.";
+    }
+}
+
+
+// ==========================================
+// TIENDA DE PISTAS
+// ==========================================
+
+function abrirTiendaPistas() {
+
+    const tienda =
+        document.getElementById(
+            "tiendaPistas"
+        );
+
+    if (tienda) {
+
+        tienda.classList.remove(
+            "hidden"
+        );
+
+        tienda.classList.add(
+            "active"
+        );
+    }
+}
+
+
+function cerrarTiendaPistas() {
+
+    const tienda =
+        document.getElementById(
+            "tiendaPistas"
+        );
+
+    if (tienda) {
+
+        tienda.classList.add(
+            "hidden"
+        );
+
+        tienda.classList.remove(
+            "active"
+        );
+    }
+}
+
+
+function cerrarPistas() {
+
+    const panel =
+        document.getElementById(
+            "panelPistas"
+        );
+
+    if (panel) {
+
+        panel.classList.add(
+            "hidden"
+        );
+
+        panel.classList.remove(
+            "active"
+        );
+    }
+}
+
+
+function iniciarCompraPista(
+    cantidad,
+    precio
+) {
+
+    alert(
+        `Compra seleccionada: ${cantidad} pista(s) por $${precio.toLocaleString("es-CO")} COP.\n\nEl sistema de pagos reales se habilitará próximamente.`
+    );
 }
 
 
@@ -896,13 +1274,16 @@ document.addEventListener(
     "keydown",
     function(event) {
 
-        if (
-            !document
-            .getElementById(
+        const game =
+            document.getElementById(
                 "gameScreen"
+            );
+
+        if (
+            !game ||
+            !game.classList.contains(
+                "active"
             )
-            ?.classList
-            .contains("active")
         ) {
 
             return;
@@ -960,6 +1341,27 @@ document.addEventListener(
                     }
                 }
             );
+        }
+
+        // Mostrar récord guardado
+        const bestScoreElement =
+            document.getElementById(
+                "bestScore"
+            );
+
+        if (bestScoreElement) {
+            bestScoreElement.textContent =
+                bestScore;
+        }
+
+        const bestStreakElement =
+            document.getElementById(
+                "bestStreak"
+            );
+
+        if (bestStreakElement) {
+            bestStreakElement.textContent =
+                bestStreak;
         }
     }
 );
