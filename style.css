@@ -1262,3 +1262,54 @@ button {
   }
 
 }
+/* =========================================================
+   COLORES DE RESPUESTAS
+========================================================= */
+
+/* RESPUESTA CORRECTA */
+.answer.correct {
+  background: #22c55e !important;
+  border-color: #16a34a !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.55) !important;
+  transform: scale(1.02);
+}
+
+/* RESPUESTA INCORRECTA */
+.answer.wrong {
+  background: #ef4444 !important;
+  border-color: #dc2626 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.55) !important;
+  transform: scale(1.02);
+}
+
+/* Mantener el color aunque el botón esté desactivado */
+.answer.correct:disabled {
+  background: #22c55e !important;
+  border-color: #16a34a !important;
+  color: #ffffff !important;
+}
+
+.answer.wrong:disabled {
+  background: #ef4444 !important;
+  border-color: #dc2626 !important;
+  color: #ffffff !important;
+}
+
+/* La letra A, B, C o D también cambia */
+.answer.correct > span {
+  background: #16a34a !important;
+  color: #ffffff !important;
+}
+
+.answer.wrong > span {
+  background: #dc2626 !important;
+  color: #ffffff !important;
+}
+
+/* El texto de la respuesta */
+.answer.correct strong,
+.answer.wrong strong {
+  color: #ffffff !important;
+}
