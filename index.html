@@ -387,25 +387,36 @@
     }
   }
 
-  document.addEventListener("DOMContentLoaded", function () {
-    const boton = document.getElementById("btnJugar");
-    if (boton) {
-      boton.addEventListener("click", function () {
-        document.querySelectorAll(".screen").forEach(screen => {
-          screen.classList.remove("active");
-        });
-        const pantalla = document.getElementById("playerScreen");
-        if (pantalla) {
-          pantalla.classList.add("active");
-          window.scrollTo(0, 0);
-          const campo = document.getElementById("playerName");
-          if (campo) campo.focus();
-        } else {
-          alert("Error: no se encontró la pantalla del jugador.");
-        }
-      });
+  
+document.addEventListener("DOMContentLoaded", function () {
+  const boton = document.getElementById("btnJugar");
+
+  if (!boton) {
+    console.error("No se encontró el botón Jugar");
+    return;
+  }
+
+  boton.addEventListener("click", function () {
+    const pantalla = document.getElementById("playerScreen");
+
+    if (!pantalla) {
+      alert("Error: no se encontró playerScreen");
+      return;
     }
+
+    document.querySelectorAll(".screen").forEach(function (screen) {
+      screen.classList.remove("active");
+    });
+
+    pantalla.classList.add("active");
+
+    const campo = document.getElementById("playerName");
+    if (campo) campo.focus();
+
+    window.scrollTo(0, 0);
   });
+});
+
 </script>
 
 </body>
