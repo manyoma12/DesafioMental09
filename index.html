@@ -84,41 +84,13 @@
 
     <div class="home-buttons">
 
-      
-
-<button
-  type="button"
-  class="main-button"
-  id="botonJugar"
->
-  <span>🎮</span>
-  Jugar
-</button>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const boton = document.getElementById("botonJugar");
-
-  if (boton) {
-    boton.addEventListener("click", function () {
-      document.querySelectorAll(".screen").forEach(function (pantalla) {
-        pantalla.classList.remove("active");
-      });
-
-      const pantallaJugador = document.getElementById("playerScreen");
-
-      if (pantallaJugador) {
-        pantallaJugador.classList.add("active");
-        window.scrollTo(0, 0);
-      } else {
-        alert("No se encontró playerScreen en el HTML.");
-      }
-    });
-  }
-});
-</script>
-
-
+      <button
+        class="main-button"
+        onclick="openPlayerScreen()"
+      >
+        <span>🎮</span>
+        Jugar
+      </button>
 
       <button
         class="secondary-button"
@@ -184,7 +156,6 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
 
   </section>
-
 
   <!-- =====================================================
        TÉRMINOS
@@ -299,7 +270,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   </section>
 
-
   <!-- =====================================================
        PRIVACIDAD
   ====================================================== -->
@@ -398,7 +368,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   </section>
 
-
   <!-- =====================================================
        SEGURIDAD
   ====================================================== -->
@@ -495,7 +464,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   </section>
 
-
   <!-- =====================================================
        CONTACTO
   ====================================================== -->
@@ -559,7 +527,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   </section>
 
-
   <!-- =====================================================
        NOMBRE DEL JUGADOR
   ====================================================== -->
@@ -601,7 +568,6 @@ document.addEventListener("DOMContentLoaded", function () {
     </button>
 
   </section>
-
 
   <!-- =====================================================
        CATEGORÍAS
@@ -709,7 +675,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   </section>
 
-
   <!-- =====================================================
        CANTIDAD
   ====================================================== -->
@@ -769,7 +734,6 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
 
   </section>
-
 
   <!-- =====================================================
        DIFICULTAD
@@ -837,7 +801,6 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
 
   </section>
-
 
   <!-- =====================================================
        MULTIJUGADOR
@@ -908,7 +871,6 @@ document.addEventListener("DOMContentLoaded", function () {
     <div id="roomInfo"></div>
 
   </section>
-
 
   <!-- =====================================================
        SALA
@@ -996,7 +958,6 @@ document.addEventListener("DOMContentLoaded", function () {
     </button>
 
   </section>
-
 
   <!-- =====================================================
        JUEGO
@@ -1141,7 +1102,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   </section>
 
-
   <!-- =====================================================
        RESULTADO
   ====================================================== -->
@@ -1233,7 +1193,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   </section>
 
-
   <!-- =====================================================
        MENÚ DEL JUEGO
   ====================================================== -->
@@ -1292,7 +1251,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   </div>
 
-
   <!-- =====================================================
        CÓMO JUGAR
   ====================================================== -->
@@ -1345,7 +1303,6 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
 
   </div>
-
 
   <!-- =====================================================
        MIS PISTAS
@@ -1403,7 +1360,6 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
 
   </div>
-
 
   <!-- =====================================================
        TIENDA
@@ -1561,7 +1517,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   </div>
 
-
   <!-- =====================================================
        MÚSICA
   ====================================================== -->
@@ -1580,7 +1535,6 @@ document.addEventListener("DOMContentLoaded", function () {
   </audio>
 
 </div>
-
 
 <!-- =====================================================
      FIREBASE
@@ -1620,13 +1574,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </script>
 
-
 <!-- =====================================================
      PREGUNTAS
 ====================================================== -->
 
 <script src="questions.js"></script>
-
 
 <!-- =====================================================
      PÁGINAS LEGALES
@@ -1658,13 +1610,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </script>
 
-
 <!-- =====================================================
      JAVASCRIPT DEL JUEGO
 ====================================================== -->
 
 <script src="script.js"></script>
-
 
 </body>
 </html>
