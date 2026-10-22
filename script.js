@@ -1324,5 +1324,12 @@ function cerrarPistas() {
         );
 
     if (panel) {
+function cerrarPistas() {
+    const panel = document.getElementById("panelPistas");
 
+    if (panel) {
+        panel.classList.add("hidden");
+        panel.classList.remove("active");
+    }
+}
        
