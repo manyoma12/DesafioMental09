@@ -1618,3 +1618,31 @@
 
 </body>
 </html>
+
+document.addEventListener("DOMContentLoaded", function () {
+    const boton = document.getElementById("btnJugar");
+
+    if (!boton) {
+        console.error("No se encontró el botón Jugar");
+        return;
+    }
+
+    boton.addEventListener("click", function () {
+        const pantalla = document.getElementById("playerScreen");
+
+        if (!pantalla) {
+            alert("No se encontró la pantalla del jugador.");
+            return;
+        }
+
+        document.querySelectorAll(".screen").forEach(function (screen) {
+            screen.classList.remove("active");
+        });
+
+        pantalla.classList.add("active");
+        window.scrollTo(0, 0);
+
+        const campo = document.getElementById("playerName");
+        if (campo) campo.focus();
+    });
+});
