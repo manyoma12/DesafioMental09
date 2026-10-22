@@ -1,1620 +1,1258 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- =========================
-       SEO PARA GOOGLE
-  ========================== -->
-
-  <title>Desafío Mental - Juego de Preguntas Online</title>
-
-  <meta
-    name="description"
-    content="Desafío Mental es un juego de preguntas online con categorías, diferentes dificultades, pistas y partidas multijugador en tiempo real."
-  >
-
-  <meta
-    name="keywords"
-    content="Desafío Mental, juego de preguntas, preguntas y respuestas, trivia online, juego educativo, juego multijugador, trivia Colombia"
-  >
-
-  <meta name="author" content="Duvan Felipe Riascos Manyoma">
-  <meta name="robots" content="index, follow">
-  <meta name="googlebot" content="index, follow">
-  <meta name="theme-color" content="#11152f">
-
-  <!-- =========================
-       REDES SOCIALES
-  ========================== -->
-
-  <meta
-    property="og:title"
-    content="Desafío Mental - Juego de Preguntas Online"
-  >
-
-  <meta
-    property="og:description"
-    content="Pon a prueba tus conocimientos, consigue puntos y compite contra otros jugadores."
-  >
-
-  <meta property="og:type" content="website">
-
-  <!-- =========================
-       ESTILOS
-  ========================== -->
-
-  <link rel="stylesheet" href="style.css">
-
-</head>
-
-<body>
-
-<div id="app">
-
-  <!-- =====================================================
-       INICIO
-  ====================================================== -->
-
-  <section id="homeScreen" class="screen active">
-
-    <div class="hero">
-
-      <div class="game-icon">🧠</div>
-
-      <div class="online-badge">
-        <span></span>
-        ONLINE
-      </div>
-
-      <h1>Desafío Mental</h1>
-
-      <p class="creator">
-        🎓 Proyecto realizado por
-        <strong>Duvan Felipe Riascos Manyoma</strong>
-      </p>
-
-      <p>
-        ¿Tienes lo necesario para convertirte en el campeón?
-      </p>
-
-    </div>
-
-    <div class="home-buttons">
-
-      <button
-        class="main-button"
-        onclick="openPlayerScreen()"
-      >
-        <span>🎮</span>
-        Jugar
-      </button>
-
-      <button
-        class="secondary-button"
-        onclick="openMultiplayerScreen()"
-      >
-        <span>👥</span>
-        Multijugador
-      </button>
-
-      <button
-        class="secondary-button tienda-home-button"
-        onclick="abrirTiendaPistas()"
-      >
-        <span>🛒</span>
-        Tienda de Pistas
-      </button>
-
-      <button
-        class="secondary-button"
-        onclick="openHowToPlay()"
-      >
-        <span>📖</span>
-        Cómo jugar
-      </button>
-
-    </div>
-
-    <!-- ENLACES LEGALES -->
-
-    <footer class="legal-footer">
-
-      <div class="legal-footer-links">
-
-        <button onclick="openLegalScreen('terminosScreen')">
-          Términos y condiciones
-        </button>
-
-        <button onclick="openLegalScreen('privacidadScreen')">
-          Política de privacidad
-        </button>
-
-        <button onclick="openLegalScreen('seguridadScreen')">
-          Seguridad
-        </button>
-
-        <button onclick="openLegalScreen('contactoScreen')">
-          Contacto
-        </button>
-
-      </div>
-
-      <p>
-        © 2026 Desafío Mental. Todos los derechos reservados.
-      </p>
-
-    </footer>
-
-    <div class="home-footer">
-
-      <span>🏆 70 preguntas</span>
-      <span>⚡ Tiempo real</span>
-
-    </div>
-
-  </section>
-
-  <!-- =====================================================
-       TÉRMINOS
-  ====================================================== -->
-
-  <section id="terminosScreen" class="screen legal-page">
-
-    <div class="legal-container">
-
-      <button
-        class="top-back"
-        onclick="openLegalScreen('homeScreen')"
-      >
-        ← Volver
-      </button>
-
-      <div class="legal-header">
-
-        <span class="legal-label">
-          INFORMACIÓN LEGAL
-        </span>
-
-        <h1>Términos y condiciones</h1>
-
-        <p>Última actualización: septiembre de 2026</p>
-
-      </div>
-
-      <div class="legal-content">
-
-        <h2>1. Aceptación de los términos</h2>
-
-        <p>
-          Al utilizar Desafío Mental, aceptas estos términos y condiciones.
-          Si no estás de acuerdo con ellos, debes dejar de utilizar el juego.
-        </p>
-
-        <h2>2. Uso del juego</h2>
-
-        <p>
-          Desafío Mental está diseñado como un juego de preguntas y respuestas
-          para fines de entretenimiento y aprendizaje.
-        </p>
-
-        <h2>3. Cuenta y nombre del jugador</h2>
-
-        <p>
-          El jugador debe utilizar un nombre apropiado y no debe utilizar
-          nombres que sean ofensivos, ilegales o que suplanten la identidad
-          de otra persona.
-        </p>
-
-        <h2>4. Multijugador</h2>
-
-        <p>
-          Las funciones multijugador pueden permitir que diferentes jugadores
-          participen en una misma partida. No debes utilizar estas funciones
-          para acosar, amenazar, engañar o perjudicar a otros jugadores.
-        </p>
-
-        <h2>5. Contenido</h2>
-
-        <p>
-          Las preguntas, textos, diseños y demás elementos de Desafío Mental
-          pueden ser modificados, actualizados o retirados en cualquier momento
-          para mejorar la experiencia del juego.
-        </p>
-
-        <h2>6. Uso responsable</h2>
-
-        <p>
-          Está prohibido utilizar el juego para actividades ilegales,
-          distribuir contenido malicioso, intentar afectar su funcionamiento
-          o acceder sin autorización a sistemas relacionados con el servicio.
-        </p>
-
-        <h2>7. Disponibilidad</h2>
-
-        <p>
-          Aunque buscamos mantener Desafío Mental disponible y funcionando
-          correctamente, pueden producirse interrupciones por mantenimiento,
-          actualizaciones, problemas técnicos o servicios externos.
-        </p>
-
-        <h2>8. Compras y pistas</h2>
-
-        <p>
-          Desafío Mental puede incluir funciones relacionadas con pistas,
-          monedas u otros elementos virtuales. Las funciones de pago pueden
-          cambiar o estar disponibles únicamente cuando el sistema de pagos
-          correspondiente se encuentre habilitado.
-        </p>
-
-        <h2>9. Cambios</h2>
-
-        <p>
-          Estos términos pueden actualizarse cuando sea necesario. La versión
-          más reciente estará disponible dentro de Desafío Mental.
-        </p>
-
-        <h2>10. Contacto</h2>
-
-        <p>
-          Si tienes preguntas relacionadas con estos términos, puedes
-          comunicarte con el responsable del proyecto mediante los medios
-          de contacto disponibles en la sección de contacto.
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- =====================================================
-       PRIVACIDAD
-  ====================================================== -->
-
-  <section id="privacidadScreen" class="screen legal-page">
-
-    <div class="legal-container">
-
-      <button
-        class="top-back"
-        onclick="openLegalScreen('homeScreen')"
-      >
-        ← Volver
-      </button>
-
-      <div class="legal-header">
-
-        <span class="legal-label">
-          INFORMACIÓN LEGAL
-        </span>
-
-        <h1>Política de privacidad</h1>
-
-        <p>Última actualización: septiembre de 2026</p>
-
-      </div>
-
-      <div class="legal-content">
-
-        <h2>1. Información que puede utilizar el juego</h2>
-
-        <p>
-          Desafío Mental puede utilizar información necesaria para permitir
-          el funcionamiento de las partidas, como el nombre elegido por el
-          jugador, información relacionada con la partida y datos técnicos
-          necesarios para prestar las funciones del juego.
-        </p>
-
-        <h2>2. Nombre del jugador</h2>
-
-        <p>
-          El nombre ingresado por el jugador puede utilizarse para identificarlo
-          durante las partidas y especialmente en las funciones multijugador.
-        </p>
-
-        <h2>3. Información de las partidas</h2>
-
-        <p>
-          Algunos datos relacionados con las partidas pueden almacenarse para
-          permitir funciones como puntuaciones, salas multijugador y
-          sincronización entre jugadores.
-        </p>
-
-        <h2>4. Servicios externos</h2>
-
-        <p>
-          Desafío Mental puede utilizar servicios tecnológicos externos para
-          determinadas funciones, como almacenamiento de datos, conexión
-          multijugador o funcionamiento de la aplicación.
-        </p>
-
-        <h2>5. Protección de la información</h2>
-
-        <p>
-          Se busca aplicar medidas razonables para proteger la información
-          utilizada por el juego y reducir el riesgo de acceso no autorizado.
-        </p>
-
-        <h2>6. Información que no debes proporcionar</h2>
-
-        <p>
-          No debes introducir contraseñas, números de tarjetas, documentos de
-          identidad, información bancaria u otros datos privados en campos
-          destinados únicamente al nombre del jugador.
-        </p>
-
-        <h2>7. Menores de edad</h2>
-
-        <p>
-          Los menores deben utilizar el juego de acuerdo con las reglas y
-          requisitos aplicables en su país y, cuando corresponda, con la
-          supervisión de sus padres o responsables.
-        </p>
-
-        <h2>8. Actualizaciones</h2>
-
-        <p>
-          Esta política puede actualizarse cuando se incorporen nuevas
-          funciones o cuando cambien los servicios utilizados por Desafío
-          Mental.
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- =====================================================
-       SEGURIDAD
-  ====================================================== -->
-
-  <section id="seguridadScreen" class="screen legal-page">
-
-    <div class="legal-container">
-
-      <button
-        class="top-back"
-        onclick="openLegalScreen('homeScreen')"
-      >
-        ← Volver
-      </button>
-
-      <div class="legal-header">
-
-        <span class="legal-label">SEGURIDAD</span>
-
-        <h1>Seguridad</h1>
-
-        <p>
-          Recomendaciones para utilizar Desafío Mental de forma segura
-        </p>
-
-      </div>
-
-      <div class="legal-content">
-
-        <h2>1. Protección de la cuenta</h2>
-
-        <p>
-          No compartas información privada, contraseñas ni códigos de acceso
-          con otras personas. Utiliza únicamente la información necesaria
-          para jugar.
-        </p>
-
-        <h2>2. Seguridad en el multijugador</h2>
-
-        <p>
-          Cuando participes en partidas multijugador, evita compartir datos
-          personales con otros jugadores.
-        </p>
-
-        <h2>3. Nombres apropiados</h2>
-
-        <p>
-          Utiliza nombres respetuosos. No utilices información privada,
-          contenido ofensivo ni nombres destinados a hacerse pasar por otra
-          persona.
-        </p>
-
-        <h2>4. Comportamiento</h2>
-
-        <p>
-          No utilices Desafío Mental para acosar, amenazar, engañar,
-          perjudicar o molestar intencionalmente a otros jugadores.
-        </p>
-
-        <h2>5. Seguridad técnica</h2>
-
-        <p>
-          Desafío Mental puede depender de servicios tecnológicos externos.
-          Estos servicios pueden presentar interrupciones, errores o
-          actualizaciones fuera del control directo del proyecto.
-        </p>
-
-        <h2>6. Actividad sospechosa</h2>
-
-        <p>
-          No intentes acceder sin autorización a bases de datos, sistemas,
-          cuentas o funciones internas del juego.
-        </p>
-
-        <h2>7. Compras</h2>
-
-        <p>
-          Cuando las compras reales estén habilitadas, utiliza únicamente
-          métodos de pago oficiales proporcionados por el sistema de pago
-          correspondiente.
-        </p>
-
-        <h2>8. Reportes</h2>
-
-        <p>
-          Si detectas un comportamiento inapropiado, un problema de seguridad
-          o una situación que pueda afectar a otros jugadores, puedes
-          comunicarte con el responsable del proyecto.
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- =====================================================
-       CONTACTO
-  ====================================================== -->
-
-  <section id="contactoScreen" class="screen legal-page">
-
-    <div class="legal-container">
-
-      <button
-        class="top-back"
-        onclick="openLegalScreen('homeScreen')"
-      >
-        ← Volver
-      </button>
-
-      <div class="legal-header">
-
-        <span class="legal-label">CONTACTO</span>
-
-        <h1>Contacto</h1>
-
-        <p>Información del proyecto</p>
-
-      </div>
-
-      <div class="legal-content">
-
-        <h2>Desafío Mental</h2>
-
-        <p>
-          Desafío Mental es un proyecto de preguntas y respuestas creado para
-          ofrecer una experiencia de entretenimiento, aprendizaje y
-          competencia entre jugadores.
-        </p>
-
-        <h2>Responsable del proyecto</h2>
-
-        <p>
-          Duvan Felipe Riascos Manyoma
-        </p>
-
-        <h2>Consultas</h2>
-
-        <p>
-          Para consultas relacionadas con el funcionamiento del juego,
-          términos, privacidad, seguridad o posibles problemas, puedes
-          utilizar los medios de contacto oficiales que se habiliten para
-          el proyecto.
-        </p>
-
-        <h2>Actualizaciones</h2>
-
-        <p>
-          La información de contacto y las funciones de Desafío Mental pueden
-          actualizarse conforme avance el proyecto.
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- =====================================================
-       NOMBRE DEL JUGADOR
-  ====================================================== -->
-
-  <section id="playerScreen" class="screen">
-
-    <button
-      class="top-back"
-      onclick="goHome()"
-    >
-      ← Volver
-    </button>
-
-    <div class="section-icon">😎</div>
-
-    <h2>¿Cómo te llamas?</h2>
-
-    <p class="description">
-      Escribe tu nombre para entrar al desafío.
-    </p>
-
-    <div class="input-card">
-
-      <input
-        id="playerName"
-        type="text"
-        maxlength="15"
-        autocomplete="off"
-        placeholder="Tu nombre"
-      >
-
-    </div>
-
-    <button
-      class="main-button"
-      onclick="continueToCategories()"
-    >
-      Continuar →
-    </button>
-
-  </section>
-
-  <!-- =====================================================
-       CATEGORÍAS
-  ====================================================== -->
-
-  <section id="categoryScreen" class="screen">
-
-    <button
-      class="top-back"
-      onclick="openPlayerScreen()"
-    >
-      ← Volver
-    </button>
-
-    <h2>Elige una categoría</h2>
-
-    <p class="description">
-      Escoge el tema de tu desafío.
-    </p>
-
-    <div class="category-grid">
-
-      <button
-        class="category-card"
-        onclick="selectCategory('general')"
-      >
-        <span>🌎</span>
-        <strong>Cultura General</strong>
-        <small>Conocimientos</small>
-      </button>
-
-      <button
-        class="category-card"
-        onclick="selectCategory('colombia')"
-      >
-        <span>🇨🇴</span>
-        <strong>Colombia</strong>
-        <small>Tu país</small>
-      </button>
-
-      <button
-        class="category-card"
-        onclick="selectCategory('science')"
-      >
-        <span>🔬</span>
-        <strong>Ciencia</strong>
-        <small>Descubre</small>
-      </button>
-
-      <button
-        class="category-card"
-        onclick="selectCategory('history')"
-      >
-        <span>🏛️</span>
-        <strong>Historia</strong>
-        <small>El pasado</small>
-      </button>
-
-      <button
-        class="category-card"
-        onclick="selectCategory('sports')"
-      >
-        <span>⚽</span>
-        <strong>Deportes</strong>
-        <small>Compite</small>
-      </button>
-
-      <button
-        class="category-card"
-        onclick="selectCategory('technology')"
-      >
-        <span>💻</span>
-        <strong>Tecnología</strong>
-        <small>Innovación</small>
-      </button>
-
-      <button
-        class="category-card"
-        onclick="selectCategory('geography')"
-      >
-        <span>🗺️</span>
-        <strong>Geografía</strong>
-        <small>El mundo</small>
-      </button>
-
-      <button
-        class="category-card"
-        onclick="selectCategory('entertainment')"
-      >
-        <span>🎬</span>
-        <strong>Entretenimiento</strong>
-        <small>Películas y más</small>
-      </button>
-
-      <button
-        class="category-card mixed-card"
-        onclick="selectCategory('mixed')"
-      >
-        <span>🎲</span>
-        <strong>Desafío Mixto</strong>
-        <small>Todo combinado</small>
-      </button>
-
-    </div>
-
-  </section>
-
-  <!-- =====================================================
-       CANTIDAD
-  ====================================================== -->
-
-  <section id="amountScreen" class="screen">
-
-    <button
-      class="top-back"
-      onclick="openCategoryScreen()"
-    >
-      ← Volver
-    </button>
-
-    <div class="section-icon">🧠</div>
-
-    <h2>¿Cuántas preguntas?</h2>
-
-    <p class="description">
-      Elige la duración de tu partida.
-    </p>
-
-    <div class="amount-grid">
-
-      <button onclick="selectAmount(10)">
-        <strong>10</strong>
-        <span>Rápida</span>
-      </button>
-
-      <button onclick="selectAmount(20)">
-        <strong>20</strong>
-        <span>Corta</span>
-      </button>
-
-      <button onclick="selectAmount(30)">
-        <strong>30</strong>
-        <span>Media</span>
-      </button>
-
-      <button onclick="selectAmount(40)">
-        <strong>40</strong>
-        <span>Larga</span>
-      </button>
-
-      <button onclick="selectAmount(50)">
-        <strong>50</strong>
-        <span>Experta</span>
-      </button>
-
-      <button
-        class="ultimate"
-        onclick="selectAmount(70)"
-      >
-        <strong>70</strong>
-        <span>🔥 Completa</span>
-      </button>
-
-    </div>
-
-  </section>
-
-  <!-- =====================================================
-       DIFICULTAD
-  ====================================================== -->
-
-  <section id="difficultyScreen" class="screen">
-
-    <button
-      class="top-back"
-      onclick="openAmountScreen()"
-    >
-      ← Volver
-    </button>
-
-    <div class="section-icon">🎯</div>
-
-    <h2>Elige la dificultad</h2>
-
-    <p class="description">
-      ¿Qué tan difícil quieres el desafío?
-    </p>
-
-    <div class="difficulty-grid">
-
-      <button
-        class="difficulty-card easy"
-        onclick="selectDifficulty('easy')"
-      >
-        <span>🟢</span>
-        <strong>Fácil</strong>
-        <small>⏱️ 50 segundos</small>
-        <em>Preguntas fáciles</em>
-      </button>
-
-      <button
-        class="difficulty-card medium"
-        onclick="selectDifficulty('medium')"
-      >
-        <span>🟡</span>
-        <strong>Medio</strong>
-        <small>⏱️ 35 segundos</small>
-        <em>Preguntas medias</em>
-      </button>
-
-      <button
-        class="difficulty-card hard"
-        onclick="selectDifficulty('hard')"
-      >
-        <span>🔴</span>
-        <strong>Difícil</strong>
-        <small>⏱️ 20 segundos</small>
-        <em>Preguntas difíciles</em>
-      </button>
-
-      <button
-        class="difficulty-card god"
-        onclick="selectDifficulty('god')"
-      >
-        <span>☠️</span>
-        <strong>Dios</strong>
-        <small>⏱️ 15 segundos</small>
-        <em>Preguntas súper difíciles</em>
-      </button>
-
-    </div>
-
-  </section>
-
-  <!-- =====================================================
-       MULTIJUGADOR
-  ====================================================== -->
-
-  <section id="multiplayerScreen" class="screen">
-
-    <button
-      class="top-back"
-      onclick="goHome()"
-    >
-      ← Volver
-    </button>
-
-    <div class="section-icon">👥</div>
-
-    <h2>Multijugador</h2>
-
-    <p class="description">
-      Compite contra otra persona en tiempo real.
-    </p>
-
-    <div class="online-panel">
-
-      <div class="live-dot"></div>
-
-      <strong>Modo online</strong>
-
-      <span>Conexión en tiempo real</span>
-
-    </div>
-
-    <button
-      class="main-button"
-      onclick="createRoom()"
-    >
-      🏠 Crear sala
-    </button>
-
-    <button
-      class="secondary-button"
-      onclick="showJoinRoom()"
-    >
-      🔑 Unirse a una sala
-    </button>
-
-    <div
-      id="joinRoomBox"
-      class="join-room hidden"
-    >
-
-      <input
-        id="roomCode"
-        type="text"
-        maxlength="6"
-        placeholder="Código de sala"
-      >
-
-      <button
-        class="main-button"
-        onclick="joinRoom()"
-      >
-        Entrar a la sala
-      </button>
-
-    </div>
-
-    <div id="roomInfo"></div>
-
-  </section>
-
-  <!-- =====================================================
-       SALA
-  ====================================================== -->
-
-  <section id="roomScreen" class="screen">
-
-    <div class="section-icon">🎮</div>
-
-    <h2>Sala de juego</h2>
-
-    <p class="description">
-      Comparte este código con tu amigo.
-    </p>
-
-    <div class="room-code-card">
-
-      <small>CÓDIGO DE SALA</small>
-
-      <strong id="displayRoomCode">------</strong>
-
-      <button
-        class="copy-button"
-        onclick="copyRoomCode()"
-      >
-        📋 Copiar código
-      </button>
-
-    </div>
-
-    <div class="players-card">
-
-      <div class="player-slot">
-
-        <span>😎</span>
-
-        <div>
-
-          <strong id="hostName">Tú</strong>
-
-          <small>Anfitrión</small>
-
-        </div>
-
-        <b>✓</b>
-
-      </div>
-
-      <div class="player-slot waiting">
-
-        <span>👤</span>
-
-        <div>
-
-          <strong id="guestName">Esperando...</strong>
-
-          <small>Jugador 2</small>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <p
-      id="waitingText"
-      class="waiting-text"
-    >
-      ⏳ Esperando al otro jugador...
-    </p>
-
-    <button
-      id="startMultiplayerButton"
-      class="main-button hidden"
-      onclick="startMultiplayerGame()"
-    >
-      🎮 Iniciar partida
-    </button>
-
-    <button
-      class="danger-button"
-      onclick="leaveRoom()"
-    >
-      🚪 Salir de la sala
-    </button>
-
-  </section>
-
-  <!-- =====================================================
-       JUEGO
-  ====================================================== -->
-
-  <section
-    id="gameScreen"
-    class="screen game-screen"
-  >
-
-    <header class="game-header">
-
-      <button
-        class="game-menu-button"
-        onclick="openGameMenu()"
-      >
-        ☰
-      </button>
-
-      <div class="progress-container">
-
-        <div class="progress-text">
-
-          <span id="questionCounter">
-            Pregunta 1 de 10
-          </span>
-
-          <span id="timer">
-            ⏱️ 15
-          </span>
-
-        </div>
-
-        <div class="progress-bar">
-
-          <div
-            id="progressFill"
-            class="progress-fill"
-          ></div>
-
-        </div>
-
-      </div>
-
-      <div class="live-score">
-
-        ⭐
-
-        <span id="gameScore">0</span>
-
-      </div>
-
-    </header>
-
-    <div
-      class="opponent-bar hidden"
-      id="opponentBar"
-    >
-
-      <span>👤</span>
-
-      <strong id="opponentName">Rival</strong>
-
-      <div class="opponent-progress">
-
-        <div id="opponentProgress"></div>
-
-      </div>
-
-      <b id="opponentScore">0</b>
-
-    </div>
-
-    <main class="question-area">
-
-      <div
-        class="category-label"
-        id="currentCategory"
-      >
-        CULTURA GENERAL
-      </div>
-
-      <h2 id="questionText">
-        Cargando pregunta...
-      </h2>
-
-      <button
-        id="usarPistaButton"
-        class="hint-button"
-        onclick="usarPista()"
-      >
-        💡 Usar pista
-
-        <span id="pistasEnJuego">0</span>
-      </button>
-
-      <div
-        id="pistaActual"
-        class="pista-actual hidden"
-      ></div>
-
-      <div
-        id="answersContainer"
-        class="answers-container"
-      >
-
-        <button
-          class="answer"
-          onclick="selectAnswer(0)"
-        >
-          <span>A</span>
-          <strong id="answer0">Respuesta</strong>
-        </button>
-
-        <button
-          class="answer"
-          onclick="selectAnswer(1)"
-        >
-          <span>B</span>
-          <strong id="answer1">Respuesta</strong>
-        </button>
-
-        <button
-          class="answer"
-          onclick="selectAnswer(2)"
-        >
-          <span>C</span>
-          <strong id="answer2">Respuesta</strong>
-        </button>
-
-        <button
-          class="answer"
-          onclick="selectAnswer(3)"
-        >
-          <span>D</span>
-          <strong id="answer3">Respuesta</strong>
-        </button>
-
-      </div>
-
-    </main>
-
-  </section>
-
-  <!-- =====================================================
-       RESULTADO
-  ====================================================== -->
-
-  <section id="resultScreen" class="screen">
-
-    <div class="result-icon">🏆</div>
-
-    <p class="result-label">
-      RESULTADO FINAL
-    </p>
-
-    <h2 id="resultTitle">
-      ¡Desafío terminado!
-    </h2>
-
-    <div class="final-score">
-
-      <span id="finalScore">0</span>
-
-      <small>puntos</small>
-
-    </div>
-
-    <div class="best-score">
-
-      🏆 Récord personal:
-
-      <strong id="bestScore">0</strong>
-
-    </div>
-
-    <div class="best-streak">
-
-      🔥 Mejor racha:
-
-      <strong id="bestStreak">0</strong>
-
-    </div>
-
-    <div class="result-stats">
-
-      <div>
-
-        <strong id="correctAnswers">0</strong>
-
-        <span>Correctas</span>
-
-      </div>
-
-      <div>
-
-        <strong id="wrongAnswers">0</strong>
-
-        <span>Incorrectas</span>
-
-      </div>
-
-      <div>
-
-        <strong id="accuracy">0%</strong>
-
-        <span>Precisión</span>
-
-      </div>
-
-    </div>
-
-    <p
-      id="resultMessage"
-      class="result-message"
-    >
-      ¡Buen trabajo!
-    </p>
-
-    <button
-      class="main-button"
-      onclick="restartGame()"
-    >
-      🔄 Jugar otra vez
-    </button>
-
-    <button
-      class="secondary-button"
-      onclick="goHome()"
-    >
-      🏠 Menú principal
-    </button>
-
-  </section>
-
-  <!-- =====================================================
-       MENÚ DEL JUEGO
-  ====================================================== -->
-
-  <div
-    id="gameMenu"
-    class="modal hidden"
-  >
-
-    <div class="modal-card">
-
-      <button
-        class="modal-close"
-        onclick="closeGameMenu()"
-      >
-        ✕
-      </button>
-
-      <h2>⚙️ Opciones</h2>
-
-      <button
-        class="setting-button"
-        onclick="toggleMusic()"
-      >
-        🎵
-        <span>Música</span>
-        <b id="musicStatus">ON</b>
-      </button>
-
-      <button
-        class="setting-button"
-        onclick="toggleVibration()"
-      >
-        📳
-        <span>Vibración</span>
-        <b id="vibrationStatus">ON</b>
-      </button>
-
-      <button
-        class="setting-button"
-        onclick="restartGame()"
-      >
-        🔄
-        <span>Reiniciar</span>
-      </button>
-
-      <button
-        class="setting-button danger-setting"
-        onclick="exitGame()"
-      >
-        🚪
-        <span>Salir del juego</span>
-      </button>
-
-    </div>
-
-  </div>
-
-  <!-- =====================================================
-       CÓMO JUGAR
-  ====================================================== -->
-
-  <div
-    id="howToPlay"
-    class="modal hidden"
-  >
-
-    <div class="modal-card">
-
-      <button
-        class="modal-close"
-        onclick="closeHowToPlay()"
-      >
-        ✕
-      </button>
-
-      <div class="modal-icon">🎮</div>
-
-      <h2>Cómo jugar</h2>
-
-      <div class="instructions">
-
-        <p>🧠 Responde las preguntas correctamente.</p>
-
-        <p>⏱️ Cada pregunta tiene un tiempo limitado.</p>
-
-        <p>⭐ Las respuestas correctas te dan puntos.</p>
-
-        <p>💡 Puedes usar pistas.</p>
-
-        <p>🕐 Consigue una pista gratis cada 50 minutos.</p>
-
-        <p>🪙 También puedes conseguir pistas desde la tienda.</p>
-
-        <p>👥 En multijugador competirás en tiempo real.</p>
-
-        <p>🏆 ¡Consigue la mayor puntuación!</p>
-
-      </div>
-
-      <button
-        class="main-button"
-        onclick="closeHowToPlay()"
-      >
-        ¡Entendido!
-      </button>
-
-    </div>
-
-  </div>
-
-  <!-- =====================================================
-       MIS PISTAS
-  ====================================================== -->
-
-  <div
-    id="panelPistas"
-    class="modal hidden"
-  >
-
-    <div class="modal-card">
-
-      <button
-        class="modal-close"
-        onclick="cerrarPistas()"
-      >
-        ✕
-      </button>
-
-      <div class="modal-icon">💡</div>
-
-      <h2>Mis Pistas</h2>
-
-      <p>
-        Tienes
-        <strong id="cantidadPistas">0</strong>
-        pistas.
-      </p>
-
-      <div class="pistas-contador">
-
-        🕐 Próxima pista gratis
-
-        <strong id="contadorPistas">
-          50:00
-        </strong>
-
-      </div>
-
-      <button
-        class="main-button"
-        onclick="abrirTiendaPistas()"
-      >
-        🛒 Ir a la tienda
-      </button>
-
-      <p class="monedas-pistas">
-
-        🪙 Monedas:
-
-        <strong id="cantidadMonedas">500</strong>
-
-      </p>
-
-    </div>
-
-  </div>
-
-  <!-- =====================================================
-       TIENDA
-  ====================================================== -->
-
-  <div
-    id="tiendaPistas"
-    class="modal hidden"
-  >
-
-    <div class="modal-card tienda-card">
-
-      <button
-        class="modal-close"
-        onclick="cerrarTiendaPistas()"
-      >
-        ✕
-      </button>
-
-      <div class="modal-icon">🛒</div>
-
-      <h2>Tienda de Pistas</h2>
-
-      <p class="store-subtitle">
-        Consigue pistas para ayudarte durante el desafío.
-      </p>
-
-      <div class="welcome-gift">
-
-        <div class="gift-icon">🎁</div>
-
-        <div>
-
-          <strong>¡REGALO DE BIENVENIDA!</strong>
-
-          <span>
-            Recibes
-            <b>3 pistas GRATIS</b>
-          </span>
-
-        </div>
-
-      </div>
-
-      <div class="hint-balance">
-
-        💡 Mis pistas:
-
-        <strong id="tiendaCantidadPistas">3</strong>
-
-      </div>
-
-      <div class="hint-product">
-
-        <div class="product-icon">💡</div>
-
-        <div class="product-info">
-
-          <strong>1 Pista</strong>
-
-          <span>Una ayuda para una pregunta</span>
-
-        </div>
-
-        <div class="product-price">
-
-          <strong>$2.000</strong>
-
-          <small>COP</small>
-
-        </div>
-
-        <button
-          class="buy-button"
-          onclick="iniciarCompraPista(1, 2000)"
-        >
-          Comprar
-        </button>
-
-      </div>
-
-      <div class="hint-product featured-product">
-
-        <div class="product-icon">
-          💡💡💡💡💡
-        </div>
-
-        <div class="product-info">
-
-          <strong>5 Pistas</strong>
-
-          <span>Paquete de pistas</span>
-
-          <em>⭐ MÁS POPULAR</em>
-
-        </div>
-
-        <div class="product-price">
-
-          <strong>$7.000</strong>
-
-          <small>COP</small>
-
-        </div>
-
-        <button
-          class="buy-button"
-          onclick="iniciarCompraPista(5, 7000)"
-        >
-          Comprar
-        </button>
-
-      </div>
-
-      <div class="hint-product">
-
-        <div class="product-icon">
-          💡💡💡💡💡💡💡💡💡💡
-        </div>
-
-        <div class="product-info">
-
-          <strong>10 Pistas</strong>
-
-          <span>El paquete grande</span>
-
-        </div>
-
-        <div class="product-price">
-
-          <strong>$12.000</strong>
-
-          <small>COP</small>
-
-        </div>
-
-        <button
-          class="buy-button"
-          onclick="iniciarCompraPista(10, 12000)"
-        >
-          Comprar
-        </button>
-
-      </div>
-
-      <p class="secure-payment">
-        🔒 Pago seguro
-      </p>
-
-      <p class="payment-note">
-        Próximamente podrás pagar con métodos de pago reales.
-      </p>
-
-    </div>
-
-  </div>
-
-  <!-- =====================================================
-       MÚSICA
-  ====================================================== -->
-
-  <audio
-    id="backgroundMusic"
-    loop
-    preload="auto"
-  >
-
-    <source
-      src="music.mp3"
-      type="audio/mpeg"
-    >
-
-  </audio>
-
-</div>
-
-<!-- =====================================================
-     FIREBASE
-====================================================== -->
-
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
-
-<script>
-
-  const firebaseConfig = {
-
-    apiKey:
-      "AIzaSyDJPtNgmsYQVJIpRRvzlZx35ofuI2UokEc",
-
-    authDomain:
-      "desafio-mentak.firebaseapp.com",
-
-    projectId:
-      "desafio-mentak",
-
-    storageBucket:
-      "desafio-mentak.firebasestorage.app",
-
-    messagingSenderId:
-      "250003028982",
-
-    appId:
-      "1:250003028982:web:ae687b62cbb71e8022e5d7"
-
-  };
-
-  firebase.initializeApp(firebaseConfig);
-
-  const db = firebase.database();
-
-</script>
-
-<!-- =====================================================
-     PREGUNTAS
-====================================================== -->
-
-<script src="questions.js"></script>
-
-<!-- =====================================================
-     PÁGINAS LEGALES
-====================================================== -->
-
-<script>
-
-  function openLegalScreen(id) {
-
-    document
-      .querySelectorAll(".screen")
-      .forEach(screen => {
-
+// ==========================================
+// 🧠 DESAFÍO MENTAL
+// SCRIPT.JS - CORREGIDO
+// ==========================================
+
+let playerName = "";
+let selectedCategory = "mixed";
+let selectedAmount = 10;
+let selectedDifficulty = "easy";
+
+let gameQuestions = [];
+let currentQuestion = 0;
+let score = 0;
+let correctAnswers = 0;
+let wrongAnswers = 0;
+
+let timeLeft = 15;
+let timer = null;
+let answered = false;
+
+let bestScore = Number(localStorage.getItem("bestScore")) || 0;
+let currentStreak = 0;
+let bestStreak = Number(localStorage.getItem("bestStreak")) || 0;
+
+let musicEnabled = true;
+let vibrationEnabled = true;
+
+// ==========================================
+// CAMBIAR PANTALLA
+// ==========================================
+
+function showScreen(screenId) {
+
+    document.querySelectorAll(".screen").forEach(screen => {
         screen.classList.remove("active");
+    });
 
-      });
+    const screen = document.getElementById(screenId);
 
-    const page = document.getElementById(id);
+    if (screen) {
+        screen.classList.add("active");
+        window.scrollTo(0, 0);
+    }
+}
 
-    if (page) {
+// ==========================================
+// INICIO
+// ==========================================
 
-      page.classList.add("active");
+function goHome() {
+    showScreen("homeScreen");
+}
 
-      window.scrollTo(0, 0);
+function openPlayerScreen() {
 
+    showScreen("playerScreen");
+
+    const input = document.getElementById("playerName");
+
+    if (input) {
+        input.focus();
+    }
+}
+
+// ==========================================
+// CATÁLOGO
+// ==========================================
+
+function openCatalog() {
+    showScreen("categoryScreen");
+}
+
+// ==========================================
+// NOMBRE
+// ==========================================
+
+function continueToCategories() {
+
+    const input = document.getElementById("playerName");
+
+    if (!input) {
+        alert("No se encontró el campo del nombre.");
+        return;
     }
 
-  }
+    const name = input.value.trim();
 
-</script>
+    if (name.length < 1) {
+        alert("Escribe tu nombre para continuar.");
+        input.focus();
+        return;
+    }
 
-<!-- =====================================================
-     JAVASCRIPT DEL JUEGO
-====================================================== -->
+    playerName = name.substring(0, 15);
 
-<script src="script.js"></script>
+    showScreen("categoryScreen");
+}
 
-</body>
-</html>
+// ==========================================
+// CATEGORÍAS
+// ==========================================
+
+function selectCategory(category) {
+
+    selectedCategory = category;
+
+    document.querySelectorAll(".category-card").forEach(button => {
+        button.classList.remove("selected");
+    });
+
+    document.querySelectorAll(".category-card").forEach(button => {
+
+        const onclickText = button.getAttribute("onclick");
+
+        if (
+            onclickText &&
+            onclickText.includes(`'${category}'`)
+        ) {
+            button.classList.add("selected");
+        }
+    });
+
+    showScreen("amountScreen");
+}
+
+function openCategoryScreen() {
+    showScreen("categoryScreen");
+}
+
+// ==========================================
+// CANTIDAD
+// ==========================================
+
+function selectAmount(amount) {
+
+    selectedAmount = Number(amount);
+
+    document.querySelectorAll(".amount-grid button").forEach(button => {
+        button.classList.remove("selected");
+    });
+
+    showScreen("difficultyScreen");
+}
+
+function openAmountScreen() {
+    showScreen("amountScreen");
+}
+
+// ==========================================
+// DIFICULTAD
+// ==========================================
+
+function selectDifficulty(difficulty) {
+
+    selectedDifficulty = difficulty;
+
+    document.querySelectorAll(".difficulty-card").forEach(button => {
+        button.classList.remove("selected");
+    });
+
+    document.querySelectorAll(".difficulty-card").forEach(button => {
+
+        const onclickText = button.getAttribute("onclick");
+
+        if (
+            onclickText &&
+            onclickText.includes(`'${difficulty}'`)
+        ) {
+            button.classList.add("selected");
+        }
+    });
+
+    startGame();
+}
+
+// ==========================================
+// COMENZAR JUEGO
+// ==========================================
+
+function startGame(amount) {
+
+    if (amount) {
+        selectedAmount = Number(amount);
+    }
+
+    currentQuestion = 0;
+    score = 0;
+    correctAnswers = 0;
+    wrongAnswers = 0;
+    currentStreak = 0;
+    answered = false;
+
+    updateScore();
+
+    prepareQuestions();
+
+    if (gameQuestions.length === 0) {
+
+        alert(
+            "No hay preguntas disponibles. Revisa questions.js."
+        );
+
+        return;
+    }
+
+    showScreen("gameScreen");
+
+    showQuestion();
+}
+
+// ==========================================
+// PREPARAR PREGUNTAS
+// ==========================================
+
+function prepareQuestions() {
+
+    const bank = window.questionBank || [];
+
+    if (!Array.isArray(bank)) {
+
+        gameQuestions = [];
+
+        console.error(
+            "❌ questionBank no existe o no es un arreglo."
+        );
+
+        return;
+    }
+
+    let filtered = bank;
+
+    // FILTRAR CATEGORÍA
+    if (
+        selectedCategory &&
+        selectedCategory !== "mixed"
+    ) {
+
+        filtered = bank.filter(question => {
+
+            return question.category === selectedCategory;
+
+        });
+    }
+
+    // FILTRAR DIFICULTAD
+    if (selectedDifficulty) {
+
+        const difficultyFiltered = filtered.filter(question => {
+
+            return question.difficulty === selectedDifficulty;
+
+        });
+
+        if (difficultyFiltered.length > 0) {
+            filtered = difficultyFiltered;
+        }
+    }
+
+    // SI NO HAY PREGUNTAS, USAR TODO EL BANCO
+    if (filtered.length === 0) {
+        filtered = bank;
+    }
+
+    filtered = shuffleArray([...filtered]);
+
+    gameQuestions = filtered.slice(
+        0,
+        Math.min(
+            selectedAmount,
+            filtered.length
+        )
+    );
+}
+
+// ==========================================
+// MEZCLAR
+// ==========================================
+
+function shuffleArray(array) {
+
+    for (
+        let i = array.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const j =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
+        [
+            array[i],
+            array[j]
+        ] = [
+            array[j],
+            array[i]
+        ];
+    }
+
+    return array;
+}
+
+// ==========================================
+// MOSTRAR PREGUNTA
+// ==========================================
+
+function showQuestion() {
+
+    clearInterval(timer);
+
+    answered = false;
+
+    if (
+        currentQuestion >=
+        gameQuestions.length
+    ) {
+
+        finishGame();
+
+        return;
+    }
+
+    const question =
+        gameQuestions[currentQuestion];
+
+    // CONTADOR
+
+    const counter =
+        document.getElementById(
+            "questionCounter"
+        );
+
+    if (counter) {
+
+        counter.textContent =
+            `Pregunta ${currentQuestion + 1} de ${gameQuestions.length}`;
+    }
+
+    // PROGRESO
+
+    const progress =
+        document.getElementById(
+            "progressFill"
+        );
+
+    if (progress) {
+
+        const percentage =
+            (currentQuestion /
+            gameQuestions.length) * 100;
+
+        progress.style.width =
+            `${percentage}%`;
+    }
+
+    // PREGUNTA
+
+    const questionText =
+        document.getElementById(
+            "questionText"
+        );
+
+    if (questionText) {
+
+        questionText.textContent =
+            question.question || "";
+    }
+
+    // CATEGORÍA
+
+    const categoryLabel =
+        document.getElementById(
+            "currentCategory"
+        );
+
+    if (categoryLabel) {
+
+        categoryLabel.textContent =
+            (
+                question.category ||
+                selectedCategory ||
+                "DESAFÍO"
+            ).toUpperCase();
+    }
+
+    // ======================================
+    // RESPUESTAS
+    // ======================================
+
+    const answerButtons =
+        document.querySelectorAll(".answer");
+
+    const answers =
+        question.answers ||
+        question.options ||
+        [];
+
+    answerButtons.forEach(
+        (button, index) => {
+
+            // LIMPIAR ESTADOS
+            button.classList.remove(
+                "correct",
+                "wrong",
+                "selected"
+            );
+
+            // LIMPIAR ESTILOS DIRECTOS
+            button.style.removeProperty("background");
+            button.style.removeProperty("background-color");
+            button.style.removeProperty("border-color");
+            button.style.removeProperty("color");
+            button.style.removeProperty("box-shadow");
+
+            button.disabled = false;
+
+            // TEXTO
+            const text =
+                button.querySelector("strong");
+
+            if (text) {
+
+                text.textContent =
+                    answers[index] || "";
+
+                text.style.removeProperty("color");
+
+            } else {
+
+                button.textContent =
+                    answers[index] || "";
+            }
+
+            // CLICK
+            button.onclick = function() {
+
+                selectAnswer(index);
+
+            };
+        }
+    );
+
+    // LETRAS A B C D
+
+    const letters = [
+        "A",
+        "B",
+        "C",
+        "D"
+    ];
+
+    answerButtons.forEach(
+        (button, index) => {
+
+            const letter =
+                button.querySelector("span");
+
+            if (letter) {
+
+                letter.textContent =
+                    letters[index];
+
+                letter.style.removeProperty("background");
+                letter.style.removeProperty("background-color");
+                letter.style.removeProperty("color");
+            }
+        }
+    );
+
+    // TEMPORIZADOR
+
+    timeLeft = 15;
+
+    updateTimer();
+
+    startTimer();
+}
+
+// ==========================================
+// TEMPORIZADOR
+// ==========================================
+
+function startTimer() {
+
+    clearInterval(timer);
+
+    timer = setInterval(() => {
+
+        timeLeft--;
+
+        updateTimer();
+
+        if (timeLeft <= 0) {
+
+            clearInterval(timer);
+
+            timeOut();
+        }
+
+    }, 1000);
+}
+
+function updateTimer() {
+
+    const timerElement =
+        document.getElementById("timer");
+
+    if (timerElement) {
+
+        timerElement.textContent =
+            `⏱️ ${timeLeft}`;
+    }
+}
+
+// ==========================================
+// TIEMPO AGOTADO
+// ==========================================
+
+function timeOut() {
+
+    if (answered) {
+        return;
+    }
+
+    answered = true;
+
+    clearInterval(timer);
+
+    wrongAnswers++;
+
+    currentStreak = 0;
+
+    const question =
+        gameQuestions[currentQuestion];
+
+    // IMPORTANTE:
+    // questions.js usa "correct"
+    const correct =
+        Number(question.correct);
+
+    const buttons =
+        document.querySelectorAll(".answer");
+
+    buttons.forEach(
+        (button, index) => {
+
+            button.disabled = true;
+
+            // LIMPIAR
+            button.classList.remove(
+                "correct",
+                "wrong"
+            );
+
+            // 🟩 RESPUESTA CORRECTA
+            if (index === correct) {
+
+                button.classList.add("correct");
+
+                button.style.setProperty(
+                    "background",
+                    "#22c55e",
+                    "important"
+                );
+
+                button.style.setProperty(
+                    "background-color",
+                    "#22c55e",
+                    "important"
+                );
+
+                button.style.setProperty(
+                    "border-color",
+                    "#16a34a",
+                    "important"
+                );
+
+                button.style.setProperty(
+                    "color",
+                    "#ffffff",
+                    "important"
+                );
+
+                button.style.setProperty(
+                    "box-shadow",
+                    "0 0 25px rgba(34,197,94,0.7)",
+                    "important"
+                );
+            }
+        }
+    );
+
+    updateScore();
+
+    setTimeout(() => {
+
+        currentQuestion++;
+
+        showQuestion();
+
+    }, 1800);
+}
+
+// ==========================================
+// RESPONDER
+// ==========================================
+
+function selectAnswer(index) {
+
+    if (answered) {
+        return;
+    }
+
+    answered = true;
+
+    clearInterval(timer);
+
+    const question =
+        gameQuestions[currentQuestion];
+
+    // ======================================
+    // RESPUESTA CORRECTA
+    // ======================================
+
+    const correct =
+        Number(question.correct);
+
+    console.log(
+        "Respuesta elegida:",
+        index
+    );
+
+    console.log(
+        "Respuesta correcta:",
+        correct
+    );
+
+    const buttons =
+        document.querySelectorAll(".answer");
+
+    buttons.forEach(
+        (button, buttonIndex) => {
+
+            button.disabled = true;
+
+            // LIMPIAR ESTADOS
+            button.classList.remove(
+                "correct",
+                "wrong"
+            );
+
+            // ==================================
+            // 🟩 CORRECTA
+            // ==================================
+
+            if (buttonIndex === correct) {
+
+                button.classList.add("correct");
+
+                button.style.setProperty(
+                    "background",
+                    "#22c55e",
+                    "important"
+                );
+
+                button.style.setProperty(
+                    "background-color",
+                    "#22c55e",
+                    "important"
+                );
+
+                button.style.setProperty(
+                    "border-color",
+                    "#16a34a",
+                    "important"
+                );
+
+                button.style.setProperty(
+                    "color",
+                    "#ffffff",
+                    "important"
+                );
+
+                button.style.setProperty(
+                    "box-shadow",
+                    "0 0 25px rgba(34,197,94,0.7)",
+                    "important"
+                );
+            }
+
+            // ==================================
+            // 🟥 INCORRECTA
+            // ==================================
+
+            if (
+                buttonIndex === index &&
+                index !== correct
+            ) {
+
+                button.classList.add("wrong");
+
+                button.style.setProperty(
+                    "background",
+                    "#ef4444",
+                    "important"
+                );
+
+                button.style.setProperty(
+                    "background-color",
+                    "#ef4444",
+                    "important"
+                );
+
+                button.style.setProperty(
+                    "border-color",
+                    "#dc2626",
+                    "important"
+                );
+
+                button.style.setProperty(
+                    "color",
+                    "#ffffff",
+                    "important"
+                );
+
+                button.style.setProperty(
+                    "box-shadow",
+                    "0 0 25px rgba(239,68,68,0.7)",
+                    "important"
+                );
+            }
+
+        }
+    );
+
+    // ======================================
+    // PUNTUACIÓN
+    // ======================================
+
+    if (index === correct) {
+
+        correctAnswers++;
+
+        currentStreak++;
+
+        if (
+            currentStreak >
+            bestStreak
+        ) {
+
+            bestStreak =
+                currentStreak;
+
+            localStorage.setItem(
+                "bestStreak",
+                bestStreak
+            );
+        }
+
+        score +=
+            100 +
+            timeLeft * 5;
+
+    } else {
+
+        wrongAnswers++;
+
+        currentStreak = 0;
+    }
+
+    updateScore();
+
+    // ======================================
+    // VIBRACIÓN
+    // ======================================
+
+    if (
+        vibrationEnabled &&
+        navigator.vibrate
+    ) {
+
+        navigator.vibrate(
+            index === correct
+                ? 50
+                : [50, 50, 50]
+        );
+    }
+
+    // ======================================
+    // SIGUIENTE PREGUNTA
+    // ======================================
+
+    setTimeout(() => {
+
+        currentQuestion++;
+
+        showQuestion();
+
+    }, 1800);
+}
+
+// ==========================================
+// PUNTUACIÓN
+// ==========================================
+
+function updateScore() {
+
+    const scoreElement =
+        document.getElementById(
+            "gameScore"
+        );
+
+    if (scoreElement) {
+
+        scoreElement.textContent =
+            score;
+    }
+}
+
+// ==========================================
+// FINAL
+// ==========================================
+
+function finishGame() {
+
+    clearInterval(timer);
+
+    if (score > bestScore) {
+
+        bestScore = score;
+
+        localStorage.setItem(
+            "bestScore",
+            bestScore
+        );
+    }
+
+    const finalScore =
+        document.getElementById("finalScore");
+
+    if (finalScore) {
+        finalScore.textContent = score;
+    }
+
+    const bestScoreElement =
+        document.getElementById("bestScore");
+
+    if (bestScoreElement) {
+        bestScoreElement.textContent = bestScore;
+    }
+
+    const bestStreakElement =
+        document.getElementById("bestStreak");
+
+    if (bestStreakElement) {
+        bestStreakElement.textContent = bestStreak;
+    }
+
+    const correctElement =
+        document.getElementById("correctAnswers");
+
+    if (correctElement) {
+        correctElement.textContent = correctAnswers;
+    }
+
+    const wrongElement =
+        document.getElementById("wrongAnswers");
+
+    if (wrongElement) {
+        wrongElement.textContent = wrongAnswers;
+    }
+
+    const accuracyElement =
+        document.getElementById("accuracy");
+
+    if (accuracyElement) {
+
+        const total =
+            correctAnswers +
+            wrongAnswers;
+
+        const accuracy =
+            total > 0
+                ? Math.round(
+                    (correctAnswers / total) * 100
+                )
+                : 0;
+
+        accuracyElement.textContent =
+            `${accuracy}%`;
+    }
+
+    const playerElement =
+        document.getElementById(
+            "resultPlayerName"
+        );
+
+    if (playerElement) {
+        playerElement.textContent =
+            playerName;
+    }
+
+    showScreen("resultScreen");
+}
+
+// ==========================================
+// REINICIAR
+// ==========================================
+
+function restartGame() {
+
+    clearInterval(timer);
+
+    startGame(selectedAmount);
+}
+
+// ==========================================
+// MULTIJUGADOR
+// ==========================================
+
+function openMultiplayerScreen() {
+    showScreen("multiplayerScreen");
+}
+
+function showJoinRoom() {
+
+    const box =
+        document.getElementById("joinRoomBox");
+
+    if (box) {
+        box.classList.remove("hidden");
+    }
+}
+
+function createRoom() {
+
+    const code =
+        Math.random()
+        .toString(36)
+        .substring(2, 8)
+        .toUpperCase();
+
+    const roomCode =
+        document.getElementById("roomCode");
+
+    if (roomCode) {
+        roomCode.value = code;
+    }
+
+    showScreen("roomScreen");
+
+    const displayedCode =
+        document.getElementById(
+            "displayRoomCode"
+        );
+
+    if (displayedCode) {
+        displayedCode.textContent = code;
+    }
+}
+
+function joinRoom() {
+
+    const input =
+        document.getElementById("roomCode");
+
+    if (!input) {
+
+        alert(
+            "No se encontró el campo del código."
+        );
+
+        return;
+    }
+
+    const code =
+        input.value
+        .trim()
+        .toUpperCase();
+
+    if (code.length < 4) {
+
+        alert(
+            "Escribe un código válido."
+        );
+
+        return;
+    }
+
+    showScreen("roomScreen");
+
+    const displayedCode =
+        document.getElementById(
+            "displayRoomCode"
+        );
+
+    if (displayedCode) {
+        displayedCode.textContent = code;
+    }
+}
+
+function leaveRoom() {
+    showScreen("multiplayerScreen");
+}
+
+function copyRoomCode() {
+
+    const code =
+        document.getElementById(
+            "displayRoomCode"
+        );
+
+    if (!code) {
+        return;
+    }
+
+    navigator.clipboard
+        ?.writeText(code.textContent)
+        .then(() => {
+
+            alert("Código copiado.");
+
+        })
+        .catch(() => {
+
+            alert(
+                "No se pudo copiar el código."
+            );
+
+        });
+}
+
+function startMultiplayerGame() {
+
+    alert(
+        "El modo multijugador está preparado para conectarse al sistema online."
+    );
+}
+
+// ==========================================
+// CÓMO JUGAR
+// ==========================================
+
+function openHowToPlay() {
+
+    const modal =
+        document.getElementById(
+            "howToPlay"
+        );
+
+    if (modal) {
+
+        modal.classList.remove("hidden");
+
+        modal.classList.add("active");
+
+        return;
+    }
+
+    alert(
+        "Responde las preguntas correctamente antes de que termine el tiempo."
+    );
+}
+
+function closeHowToPlay() {
+
+    const modal =
+        document.getElementById(
+            "howToPlay"
+        );
+
+    if (modal) {
+
+        modal.classList.add("hidden");
+
+        modal.classList.remove("active");
+    }
+}
+
+// ==========================================
+// MÚSICA
+// ==========================================
+
+function toggleMusic() {
+
+    musicEnabled = !musicEnabled;
+
+    const music =
+        document.getElementById(
+            "backgroundMusic"
+        );
+
+    const status =
+        document.getElementById(
+            "musicStatus"
+        );
+
+    if (status) {
+
+        status.textContent =
+            musicEnabled
+                ? "ON"
+                : "OFF";
+    }
+
+    if (!music) {
+        return;
+    }
+
+    if (musicEnabled) {
+
+        music.play().catch(() => {});
+
+    } else {
+
+        music.pause();
+    }
+}
+
+// ==========================================
+// VIBRACIÓN
+// ==========================================
+
+function toggleVibration() {
+
+    vibrationEnabled =
+        !vibrationEnabled;
+
+    const status =
+        document.getElementById(
+            "vibrationStatus"
+        );
+
+    if (status) {
+
+        status.textContent =
+            vibrationEnabled
+                ? "ON"
+                : "OFF";
+    }
+
+    if (
+        vibrationEnabled &&
+        navigator.vibrate
+    ) {
+
+        navigator.vibrate(100);
+    }
+}
+
+// ==========================================
+// MENÚ
+// ==========================================
+
+function openGameMenu() {
+
+    const menu =
+        document.getElementById(
+            "gameMenu"
+        );
+
+    if (menu) {
+
+        menu.classList.remove("hidden");
+
+        menu.classList.add("active");
+    }
+}
+
+function closeGameMenu() {
+
+    const menu =
+        document.getElementById(
+            "gameMenu"
+        );
+
+    if (menu) {
+
+        menu.classList.add("hidden");
+
+        menu.classList.remove("active");
+    }
+}
+
+function exitGame() {
+
+    closeGameMenu();
+
+    clearInterval(timer);
+
+    goHome();
+}
+
+// ==========================================
+// PISTAS
+// ==========================================
+
+function usarPista() {
+
+    const pistaActual =
+        document.getElementById(
+            "pistaActual"
+        );
+
+    if (pistaActual) {
+
+        pistaActual.classList.remove("hidden");
+
+        pistaActual.textContent =
+            "💡 Pista: analiza cuidadosamente las opciones.";
+    }
+}
+
+// ==========================================
+// TIENDA
+// ==========================================
+
+function abrirTiendaPistas() {
+
+    const tienda =
+        document.getElementById(
+            "tiendaPistas"
+        );
+
+    if (tienda) {
+
+        tienda.classList.remove("hidden");
+
+        tienda.classList.add("active");
+    }
+}
+
+function cerrarTiendaPistas() {
+
+    const tienda =
+        document.getElementById(
+            "tiendaPistas"
+        );
+
+    if (tienda) {
+
+        tienda.classList.add("hidden");
+
+        tienda.classList.remove("active");
+    }
+}
+
+function cerrarPistas() {
+
+    const panel =
+        document.getElementById(
+            "panelPistas"
+        );
+
+    if (panel) {
+
+       
