@@ -85,14 +85,39 @@
     <div class="home-buttons">
 
       
+
 <button
   type="button"
   class="main-button"
-  onclick="alert('El botón funciona'); openPlayerScreen();"
+  id="botonJugar"
 >
   <span>🎮</span>
   Jugar
 </button>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const boton = document.getElementById("botonJugar");
+
+  if (boton) {
+    boton.addEventListener("click", function () {
+      document.querySelectorAll(".screen").forEach(function (pantalla) {
+        pantalla.classList.remove("active");
+      });
+
+      const pantallaJugador = document.getElementById("playerScreen");
+
+      if (pantallaJugador) {
+        pantallaJugador.classList.add("active");
+        window.scrollTo(0, 0);
+      } else {
+        alert("No se encontró playerScreen en el HTML.");
+      }
+    });
+  }
+});
+</script>
+
 
 
       <button
